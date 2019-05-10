@@ -1,0 +1,22 @@
+{
+  "name": "maropost.api",
+  "version": "0.1.0",
+  "description": "## Package still under active development. Functionality and documentation likely to change without notice. ##",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/marosolutions/marketing-nodejs.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/marosolutions/marketing-nodejs/issues"
+  },
+  "homepage": "https://github.com/marosolutions/marketing-nodejs#readme",
+  "dependencies": {
+    "dotenv": "^8.0.0"
+  }
+}
