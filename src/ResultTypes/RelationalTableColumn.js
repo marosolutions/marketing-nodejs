@@ -55,7 +55,7 @@ class RelationalTableColumn {
       return new GetResult(null, `Value of column 'field_length' must be a integer.`)
     }
 
-    result = new GetResult(null, '');
+    var result = new GetResult(null, '');
     result.isSuccess = true;
     return result;
   }
