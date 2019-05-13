@@ -4,7 +4,7 @@
   "description": "## Package still under active development. Functionality and documentation likely to change without notice. ##",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -17,6 +17,10 @@
   },
   "homepage": "https://github.com/marosolutions/marketing-nodejs#readme",
   "dependencies": {
-    "dotenv": "^8.0.0"
+    "dotenv": "^8.0.0",
+    "node-fetch": "^2.5.0"
+  },
+  "devDependencies": {
+    "jest": "^24.8.0"
   }
 }

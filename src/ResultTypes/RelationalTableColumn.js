@@ -1,5 +1,4 @@
 var OperationResult =  require('../Abstractions/OperationResult');
-var GetResult =  require('./GetResult');
 
 class RelationalTableColumn {
   /**
@@ -24,38 +23,38 @@ class RelationalTableColumn {
    */
   validate() {
     if (typeof this.name !== 'string') {
-      return new GetResult(null, `Value of column 'name' must be a string.`)
+      return new OperationResult(null, `Value of column 'name' must be a string.`)
     }
 
     if (typeof this.key !== 'string') {
-      return new GetResult(null, `Value of column 'key' must be a string.`)
+      return new OperationResult(null, `Value of column 'key' must be a string.`)
     }
 
     if (typeof this.data_type !== 'string') {
-      return new GetResult(null, `Value of column 'data_type' must be a string.`)
+      return new OperationResult(null, `Value of column 'data_type' must be a string.`)
     }
 
     if (typeof this.primary_key !== 'boolean') {
-      return new GetResult(null, `Value of column 'primary_key' must be a boolean.`)
+      return new OperationResult(null, `Value of column 'primary_key' must be a boolean.`)
     }
 
     if (typeof this.auto_increment !== 'boolean') {
-      return new GetResult(null, `Value of column 'auto_increment' must be a boolean.`)
+      return new OperationResult(null, `Value of column 'auto_increment' must be a boolean.`)
     }
 
     if (typeof this.allow_null !== 'boolean') {
-      return new GetResult(null, `Value of column 'allow_null' must be a boolean.`)
+      return new OperationResult(null, `Value of column 'allow_null' must be a boolean.`)
     }
 
     if (typeof this.sendable !== 'boolean') {
-      return new GetResult(null, `Value of column 'sendable' must be a boolean.`)
+      return new OperationResult(null, `Value of column 'sendable' must be a boolean.`)
     }
 
     if (typeof this.field_length !== 'number') {
-      return new GetResult(null, `Value of column 'field_length' must be a integer.`)
+      return new OperationResult(null, `Value of column 'field_length' must be a integer.`)
     }
 
-    var result = new GetResult(null, '');
+    var result = new OperationResult(null, '');
     result.isSuccess = true;
     return result;
   }

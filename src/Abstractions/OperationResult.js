@@ -2,31 +2,52 @@ class OperationResult {
     
   /**
    * Constructor
-   */
-  constructor() {
-    this.isSuccess;
-    this.errorMessage;
-    this.exception;
-    this._data;
-  }
-
-  /**
-   * Gets the data of the Maropost response to the API call.
    * 
-   * @return {array|mixed|null}
+   * apiResponse = {
+   *   body: {
+   *      error: '',
+   *      message: ''
+   *   }
+   *   status: 200
+   * }
+   * 
+   * @param {object|null} apiResponse
+   * @param {string|null} errorMessage
    */
-  getData() {
-    var data = this._data;
-    if (typeof data === 'string') {
-      return JSON.parse(data);
+  constructor(apiResponse = null, errorMessage = null) {
+    if (!apiResponse) {
+      this.isSuccess = false;
+      this.errorMessage = errorMessage;
     }
-    else if (Array.isArray(data)) {
-        data.map(item => ({ 'scalar': item }))
+    else {
+      var statusCode = apiResponse.status
+      var body = apiResponse.body
+      this.data = body;
+      this.errorMessage = (this.errorMessage) ? this.errorMessage : (body.error) ? body.error : '';
+      if (statusCode >= 200 && statusCode < 300) {
+        this.isSuccess = (this.errorMessage.length == 0);
+      }
+      else {
+        this.isSuccess = false;
+        if (!this.errorMessage) {
+          if (body.message) {
+            this.errorMessage = body.message;
+          }
+          else if (statusCode >= 500) {
+            this.errorMessage = statusCode + ': Maropost experienced a server error and could not complete your request.';
+          }
+          else if (statusCode >= 400) {
+            this.errorMessage = statusCode + ': Either your accountId, authToken, or one (or more) of your function arguments are invalid.';
+          }
+          else if (statusCode >= 300) {
+            this.errorMessage = statusCode + ': This Maropost API function is currently unavailable.';
+          }
+          else {
+            this.errorMessage = statusCode + ': Unexpected final response from Maropost.';
+          }
+        }
+      }
     }
-    else if (typeof data !== 'object') {
-      return null;
-    }
-    return data;
   }
 }
 
