@@ -1,10 +1,12 @@
-var Reports = require('./src/Reports');
+var Campaigns = require('./src/Campaigns');
+var Contacts = require('./src/Campaigns');
 
 module.exports = 
 {
   Maropost: {
     Api: {
-      Reports
+      Campaigns,
+      Contacts
     }
   }
 };

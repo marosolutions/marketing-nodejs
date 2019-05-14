@@ -80,11 +80,9 @@ class Api {
   _discardNullAndEmptyValues(params) {
     var transformedArray = [];
     for (var key in params) {
-      if (params.hasOwnProperty(key)) {
-        var value = keyValuePairs[key];
-        if (value) {
-          transformedArray[key] = value;
-        }
+      var value = params[key];
+      if (value) {
+        transformedArray[key] = value;
       }
     }
     return transformedArray
