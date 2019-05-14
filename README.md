@@ -20,24 +20,25 @@ TODO
 To use a service, first instantiate it, providing your Maropost AccountId
 and Auth Token. For example, to get your list of reports using the Reports
 service, execute:
-
-    var reports = new Maropost.Api.Reports(myAccountId, myAuthToken);
-    var result = reports.Get();
-    if (result.isSuccess) {
-        myReports = result.ResultData;
-    }
-
+```javascript
+var { Maropost } = require(maropost.api)
+var reports = new Maropost.Api.Reports(myAccountId, myAuthToken);
+var result = await reports.get();
+if (result.isSuccess) {
+  var myReports = result.data;
+}
+```
 The result object contains three fields:
 
-- `Success` (bool)
-- `ErrorMessage` (string)
-- `Exception` (System.Exception)
+- `isSuccess` (bool)
+- `errorMessage` (string)
+- `exception` (Exception)
 
-If `Success` is `false`, then `ErrorMessage` will contain information, and
+If `isSuccess` is `false`, then `errorMessage` will contain information, and
 `Exception` *might* contain an exception, depending upon the reason for
-failure. If `Exception` is not `null`, then `Success` will always be `false`.
+failure. If `exception` is not `null`, then `isSuccess` will always be `false`.
 
-The object might also contains one property, `ResultData` (dynamic), which contains whatever
+The object might also contains one property, `data` (dynamic), which contains whatever
 data the operation itself provides. Some operations, such as `delete()`
 operations, might not provide any data.
 
@@ -55,47 +56,48 @@ The specific APIs contained are:
 
 ## Campaigns
 ### Instantiation:
-
-    new Maropost.Api.Campaigns($myAccountId, $myAuthToken)
+```javascript
+new Maropost.Api.Campaigns(myAccountId, myAuthToken)
+```
 
 ### Available methods:
 
- - `get(int $page)`
+ - `get(page)`
    - returns the list of campaigns for the account
-   - `$page`: page # (>= 1). Up to 200 records returned per page.
- - `getCampaign(int $campaignId)`
+   - `page`: page # (>= 1). Up to 200 records returned per page.
+ - `getCampaign(campaignId)`
    - returns the given campaign
-   - `$campaignId`
- - `getBounceReports(int $id, int $page)`
-   - returns the list of bounce reports for the given campaign ID
-   - `$page`: page # (>= 1). Up to 200 records returned per page.
- - `getClickReports(int $id, int $page, bool unique = null)`
-   - returns the list of click reports for the given campaign ID
-   - `$page`: page # (>= 1). Up to 200 records returned per page.
-   - `$unique`: `true` = get for unique contacts. Otherwise, `false`. 
- - `getComplaintReports(int $id, int $page)`
-   - returns the list of complaint reports for the given campaign ID
-   - `$page`: page # (>= 1). Up to 200 records returned per page.
- - `getDeliveredReports(int $id, int $page)`
+   - `campaignId`
+ - `getDeliveredReports(id, page)`
    - returns the list of delivered reports for the given campaign ID
-   - `$page`: page # (>= 1). Up to 200 records returned per page.
- - `getHardBounceReports(int $id, int $page)`
-   - returns the list of hard bounces for the given campaign ID
-   - `$page`: page # (>= 1). Up to 200 records returned per page.
- - `getLinkReports(int $id, int $page, bool unique = null)`
-   - returns the list of link reports for the given campaign ID
-   - `$page`: page # (>= 1). Up to 200 records returned per page.
-   - `$unique`: `true` = get for unique contacts. Otherwise, `false`. 
- - `getOpenReports(int $id, int $page, bool unique = null)`
+   - `page`: page # (>= 1). Up to 200 records returned per page.
+ - `getOpenReports(id, page, unique = null)`
    - returns the list of open reports for the given campaign ID
-   - `$page`: page # (>= 1). Up to 200 records returned per page.
-   - `$unique`: `true` = get for unique contacts. Otherwise, `false`. 
- - `getSoftBounceReports(int $id, int $page)`
+   - `page`: page # (>= 1). Up to 200 records returned per page.
+   - `unique`: `true` = get for unique contacts. Otherwise, `false`. 
+ - `getClickReports(id, page, unique = null)`
+   - returns the list of click reports for the given campaign ID
+   - `page`: page # (>= 1). Up to 200 records returned per page.
+   - `unique`: `true` = get for unique contacts. Otherwise, `false`. 
+ - `getLinkReports(id, page, unique = null)`
+   - returns the list of link reports for the given campaign ID
+   - `page`: page # (>= 1). Up to 200 records returned per page.
+   - `unique`: `true` = get for unique contacts. Otherwise, `false`. 
+ - `getBounceReports(id, page)`
+   - returns the list of bounce reports for the given campaign ID
+   - `page`: page # (>= 1). Up to 200 records returned per page.
+ - `getSoftBounceReports(id, page)`
    - returns the list of soft bounce reports for the given campaign ID
-   - `$page`: page # (>= 1). Up to 200 records returned per page.
- - `getUnsubscribeReports(int $id, int $page)`
-   - returns the list of unsubscribe reports for the given campaign ID
-   - `$page`: page # (>= 1). Up to 200 records returned per page.
+   - `page`: page # (>= 1). Up to 200 records returned per page.
+ - `getHardBounceReports(id, page)`
+   - returns the list of hard bounce reports for the given campaign ID
+   - `page`: page # (>= 1). Up to 200 records returned per page.
+ - `getUnsubscribeReports(id, page)`
+   - returns the list of soft unsubscribe reports for the given campaign ID
+   - `page`: page # (>= 1). Up to 200 records returned per page.
+ - `getComplaintReports(id, page)`
+   - returns the list of complaint reports for the given campaign ID
+   - `page`: page # (>= 1). Up to 200 records returned per page.
    
 ## AB Test Campaigns
 ### Instantiation:
@@ -198,170 +200,172 @@ The specific APIs contained are:
 ## Contacts
 
 ### Instantiation:
-
-    new Maropost.Api.Contacts($myAccountId, $myAuthToken)
+```javascript
+new Maropost.Api.Contacts(myAccountId, myAuthToken)
+```
 
 ### Available methods:
 
- - `getForEmail(string $email)`
+ - `getForEmail(email)`
    * Gets the contact according to email address 
-   * `$email`: email address of the contact
+   * `email`: email address of the contact
 
- - `getOpens(int $contactId, int $page)`
+ - `getOpens(contactId, page)`
    * Gets the list of opens for the specified contact
-   - `$page`: page # (>= 1). Up to 200 records returned per page.
+   - `page`: page # (>= 1). Up to 200 records returned per page.
 
- - `getClicks(int $contactId, int $page)`
+ - `getClicks(contactId, page)`
    * Gets the list of clicks for the specified contact
-   - `$page`: page # (>= 1). Up to 200 records returned per page.
+   - `page`: page # (>= 1). Up to 200 records returned per page.
 
- - `getForList(int $listId, int $page)`
+ - `getForList(listId, page)`
    * Gets the list of contacts for the specified list
-   - `$page`: page # (>= 1). Up to 200 records returned per page.
+   - `listId`
+   - `page`: page # (>= 1). Up to 200 records returned per page.
 
- - `getContactForList(int $listId, int $contactId)`
+ - `getContactForList(listId, contactId)`
    - Gets the specified contact from the specified list
-   - `$listId`
-   - `$contactId`
+   - `listId`
+   - `contactId`
 
- - `public function updateForListAndContact(
-        int $listId,
-        int $contactId,
-        string $email,
-        string $firstName = null,
-        string $lastName = null,
-        string $phone = null,
-        string $fax = null,
-        string $uid = null,
-        array $customField = [],
-        array $addTags = [],
-        array $removeTags = [],
-        bool $removeFromDNM = true,
-        bool $subscribe = true
+ - `updateForListAndContact(
+      listId,
+      contactId,
+      email,
+      firstName = null,
+      lastName = null,
+      phone = null,
+      fax = null,
+      uid = null,
+      customField = [],
+      addTags = [],
+      removeTags = [],
+      removeFromDNM = true,
+      subscribe = true
     )`
      * Creates a contact within a list. Updates if previous contact is matched by email
-     * `$listId`: ID of the list to which the contact being updated belongs
-     * `$contactId`: ID of the contact being updated
-     * `$email`: Email address for the contact to be updated
-     * `$firstName`: first name of Contact
-     * `$lastName`: last name of Contact
-     * `$phone`: phone number of Contact
-     * `$fax`: fax number of Contact
-     * `$uid`: UID for the Contact
-     * `$customField`: custom fields passed as associative array. Keys represent the field names while values represent the values
-     * `$addTags`: tags to add to the contact. Simple array of tag names
-     * `$removeTags`: tags to remove from the contact. Simple array of tag names
-     * `$removeFromDNM`: set this true to subscribe contact to the list, and remove it from DNM)
-     * `$subscribe`: set this true to subscribe contact to the list; false otherwise
+     * `listId`: ID of the list to which the contact being updated belongs
+     * `contactId`: ID of the contact being updated
+     * `email`: Email address for the contact to be updated
+     * `firstName`: first name of Contact
+     * `lastName`: last name of Contact
+     * `phone`: phone number of Contact
+     * `fax`: fax number of Contact
+     * `uid`: UID for the Contact
+     * `customField`: custom fields passed as associative array. Keys represent the field names while values represent the values
+     * `addTags`: tags to add to the contact. Simple array of tag names
+     * `removeTags`: tags to remove from the contact. Simple array of tag names
+     * `removeFromDNM`: set this true to subscribe contact to the list, and remove it from DNM)
+     * `subscribe`: set this true to subscribe contact to the list; false otherwise
   
  - `createOrUpdateForList(
-        int $listId,
-        string $email,
-        string $firstName = null,
-        string $lastName = null,
-        string $phone = null,
-        string $fax = null,
-        string $uid = null,
-        array $customField = [],
-        array $addTags = [],
-        array $removeTags = [],
-        bool $removeFromDNM = true,
-        bool $subscribe = true
+      listId,
+      email,
+      firstName = null,
+      lastName = null,
+      phone = null,
+      fax = null,
+      uid = null,
+      customField = [],
+      addTags = [],
+      removeTags = [],
+      removeFromDNM = true,
+      subscribe = true
     )`
      * Creates a contact within a list. Updates if previous contact is matched by email.
-     * `$listId`: ID of the list for which the contact is being created
-     * `$email`: email address for the contact to be created|updated
-     * `$firstName`: first name of Contact
-     * `$lastName`: last Name of Contact
-     * `$phone`: phone number of Contact
-     * `$fax`: fax number of Contact
-     * `$uid`: UID for the contact
-     * `$customField`: custom fields passed as associative array. Keys represent the field names while values represent the values.
-     * `$addTags`: tags to add to the contact. Simple array of tag names (strings).
-     * `$removeTags`: tags to remove from the contact. Simple array of tag names (strings).
-     * `$removeFromDNM`: Set this true to subscribe contact to the list, and remove it from DNM.
-     * `$subscribe`: true to subscribe the contact to the list; false otherwise.
+     * `listId`: ID of the list for which the contact is being created
+     * `email`: email address for the contact to be created|updated
+     * `firstName`: first name of Contact
+     * `lastName`: last Name of Contact
+     * `phone`: phone number of Contact
+     * `fax`: fax number of Contact
+     * `uid`: UID for the contact
+     * `customField`: custom fields passed as associative array. Keys represent the field names while values represent the values.
+     * `addTags`: tags to add to the contact. Simple array of tag names (strings).
+     * `removeTags`: tags to remove from the contact. Simple array of tag names (strings).
+     * `removeFromDNM`: Set this true to subscribe contact to the list, and remove it from DNM.
+     * `subscribe`: true to subscribe the contact to the list; false otherwise.
 
  - `createOrUpdateContact(
-        int $contactId,
-        string $email,
-        string $firstName = null,
-        string $lastName = null,
-        string $phone = null,
-        string $fax = null,
-        string $uid = null,
-        array $customField = [],
-        array $addTags = [],
-        array $removeTags = [],
-        bool $removeFromDNM = true,
-        bool $subscribe = true
+      contactId,
+      email,
+      firstName = null,
+      lastName = null,
+      phone = null,
+      fax = null,
+      uid = null,
+      customField = [],
+      addTags = [],
+      removeTags = [],
+      removeFromDNM = true,
+      subscribe = true
     )`
      * Creates a contact without a list. Updates if already existing email is passed.
-     * `$contactId`: ID of the contact
-     * `$email`: Email address for the contact to be created|updated
-     * `$firstName`: first name of Contact
-     * `$lastName`: last Name of Contact
-     * `$phone`: phone number of Contact
-     * `$fax`: fax number of Contact
-     * `$uid`: UID for the contact
-     * `$customField`: custom fields passed as associative array. Keys represent the field names while values represent the values
-     * `$addTags`: tags to add to the contact. Simple array of tag names (strings).
-     * `$removeTags`: tags to remove from the contact. Simple array of tag names (strings).
-     * `$removeFromDNM`: set this true to subscribe contact to the list, and remove it from DNM
+     * `contactId`: ID of the contact
+     * `email`: Email address for the contact to be created|updated
+     * `firstName`: first name of Contact
+     * `lastName`: last Name of Contact
+     * `phone`: phone number of Contact
+     * `fax`: fax number of Contact
+     * `uid`: UID for the contact
+     * `customField`: custom fields passed as associative array. Keys represent the field names while values represent the values
+     * `addTags`: tags to add to the contact. Simple array of tag names (strings).
+     * `removeTags`: tags to remove from the contact. Simple array of tag names (strings).
+     * `removeFromDNM`: set this true to subscribe contact to the list, and remove it from DNM
 
  - `createOrUpdateForListsAndWorkflows(
-        string $email,
-        string $firstName = null,
-        string $lastName = null,
-        string $phone = null,
-        string $fax = null,
-        string $uid = null,
-        array $customField = [],
-        array $addTags = [],
-        array $removeTags = [],
-        bool $removeFromDNM = false,
-        array $subscribeListIds = [],
-        array $unsubscribeListIds = [],
-        array $unsubscribeWorkflowIds = [],
-        string $unsubscribeCampaign = null
+      email,
+      firstName = null,
+      lastName = null,
+      phone = null,
+      fax = null,
+      uid = null,
+      customField = [],
+      addTags = [],
+      removeTags = [],
+      removeFromDNM = false,
+      subscribeListIds = [],
+      unsubscribeListIds = [],
+      unsubscribeWorkflowIds = [],
+      unsubscribeCampaign = null
     )`
      * Creates or updates Contact
         - Multiple lists can be subscribed, unsubscribed. 
         - Multiple workflows can be unsubscribed.
-     * `$email`: email address for the contact to be created|updated
-     * `$firstName`: first name of Contact
-     * `$lastName`: last name of Contact
-     * `$phone`: phone number of Contact
-     * `$fax`: fax number of Contact
-     * `$uid`: UID for the Contact
-     * `$customField`: custom fields passed as associative array. Keys represent the field names while values represent the values
-     * `$addTags`: tags to add to the contact. Simple array of tag names (strings)
-     * `$removeTags`: tags to remove from the contact. Simple array of tag names (strings)
-     * `$removeFromDNM`: set this true to subscribe contact to the list, and remove it from DNM
-     * `$subscribeListIds`: simple array of IDs of lists to subscribe the contact to
-     * `$unsubscribeListIds`: simple array of IDs of Lists to unsubscribe the contact from
-     * `$unsubscribeWorkflowIds`: simple array of list of IDs of workflows to unsubscribe the contact from
-     * `$unsubscribeCampaign`: campaignID to unsubscribe the contact from
+     * `email`: email address for the contact to be created|updated
+     * `firstName`: first name of Contact
+     * `lastName`: last name of Contact
+     * `phone`: phone number of Contact
+     * `fax`: fax number of Contact
+     * `uid`: UID for the Contact
+     * `customField`: custom fields passed as associative array. Keys represent the field names while values represent the values
+     * `addTags`: tags to add to the contact. Simple array of tag names (strings)
+     * `removeTags`: tags to remove from the contact. Simple array of tag names (strings)
+     * `removeFromDNM`: set this true to subscribe contact to the list, and remove it from DNM
+     * `subscribeListIds`: simple array of IDs of lists to subscribe the contact to
+     * `unsubscribeListIds`: simple array of IDs of Lists to unsubscribe the contact from
+     * `unsubscribeWorkflowIds`: simple array of list of IDs of workflows to unsubscribe the contact from
+     * `unsubscribeCampaign`: campaignID to unsubscribe the contact from
 
- - `deleteFromAllLists(string $email)`
+ - `deleteFromAllLists(email)`
      * Deletes specified contact from all lists
-     * `$email`: email address of the contact
+     * `email`: email address of the contact
 
- - `deleteFromLists(int $contactId, array $listIds = [])`
+ - `deleteFromLists(contactId, listIds = [])`
      * Deletes the specified contact from the specified lists
-     * `$contactId`: id of the contact
-     * `$listIds`: simple array of ids of the lists
+     * `contactId`: id of the contact
+     * `listIds`: simple array of ids of the lists
 
- - `deleteContactForUid(string $uid)`
+ - `deleteContactForUid(uid)`
      * Deletes contact having the specified UID
 
- - `deleteListContact(int $listId, int $contactId)`
+ - `deleteListContact(listId, contactId)`
      * Deletes specified contact from the specified list
 
- - `unsubscribeAll(string $contactFieldValue, string $contactFieldName = 'email')`
+ - `unsubscribeAll(contactFieldValue, contactFieldName = 'email')`
      * Unsubscribes contact having the specified field name/value.
-     * `$contactFieldValue`: the value of the field for the contact(s) being unsubscribed
-     * `$contactFieldName`: the name of the field being checked for the value. At present, the 
+     * `contactFieldValue`: the value of the field for the contact(s) being unsubscribed
+     * `contactFieldName`: the name of the field being checked for the value. At present, the 
      accepted field names are: 'email' or 'uid'
 
 ## Journeys
