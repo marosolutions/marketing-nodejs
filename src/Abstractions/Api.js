@@ -67,8 +67,10 @@ class Api {
   createApiRequestData(url, method = 'GET', body = null) {
     var request = {
       method: method,
-      body: body,
       headers: this.getHttpHeaders()
+    }
+    if (body) {
+      request['body'] = body;
     }
     return request;
   }
@@ -78,7 +80,7 @@ class Api {
    * @return {array}
    */
   _discardNullAndEmptyValues(params) {
-    var transformedArray = [];
+    var transformedArray = {};
     for (var key in params) {
       var value = params[key];
       if (value) {
@@ -133,7 +135,6 @@ class Api {
 
     var formData = JSON.stringify(body);
     var requestData = this.createApiRequestData(url, 'POST', formData);
-
     return fetch(url, requestData)
     .then(async response => {
       const jsonResponse = await response.json()
@@ -199,7 +200,7 @@ class Api {
     url += '.json';
     url += this.getQueryString(params);
     
-    if (typeof body === 'object') {
+    if (body && typeof body === 'object') {
       var formData = JSON.stringify(body);
       requestData = this.createApiRequestData(url, 'DELETE', formData);
     } else {
@@ -208,7 +209,7 @@ class Api {
 
     return fetch(url, requestData)
     .then(async response => {
-      const jsonResponse = await response.json()
+      const jsonResponse = (await response.text()) ? await response.json() : null
       var _apiResponse = {
         body: jsonResponse,
         status: response.status

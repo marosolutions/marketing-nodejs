@@ -21,9 +21,9 @@ class OperationResult {
     }
     else {
       var statusCode = apiResponse.status
-      var body = apiResponse.body
+      var body = (apiResponse.body) ? apiResponse.body : null
       this.data = body;
-      this.errorMessage = (this.errorMessage) ? this.errorMessage : (body.error) ? body.error : '';
+      this.errorMessage = (this.errorMessage) ? this.errorMessage : (body && body.error) ? body.error : '';
       if (statusCode >= 200 && statusCode < 300) {
         this.isSuccess = (this.errorMessage.length == 0);
       }

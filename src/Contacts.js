@@ -95,7 +95,7 @@ class Contacts {
    * @param {bool} subscribe Set this true to subscribe contact to the list; false otherwise
    * @return OperationResult
    */
-  createOrUpdateForList(
+  async createOrUpdateForList(
     listId,
     email,
     firstName = null,
@@ -204,7 +204,7 @@ class Contacts {
    * @param {bool} removeFromDNM Set this true to subscribe contact to the list, and remove it from DNM)
    * @return OperationResult
    */
-  createOrUpdateContact(
+  async createOrUpdateContact(
     email,
     firstName = null,
     lastName = null,
@@ -259,7 +259,7 @@ class Contacts {
    * @param {string|null} unsubscribeCampaign CampaignID to unsubscribe the contact from
    * @return OperationResult
    */
-  createOrUpdateForListsAndWorkflows(
+  async createOrUpdateForListsAndWorkflows(
     email,
     firstName = null,
     lastName = null,
@@ -318,7 +318,6 @@ class Contacts {
     var emailAsArray = {
       'contact[email]': email
     };
-
     return this.api._delete('delete_all', emailAsArray);
   }
 
@@ -370,10 +369,9 @@ class Contacts {
    * @return OperationResult
    */
   unsubscribeAll(contactFieldValue, contactFieldName = 'email') {
+    var key = `contact[${contactFieldName}]`;
     var params = {
-      contact: {
-        [contactFieldName]: contactFieldValue
-      }
+      [key]: contactFieldValue
     };
     return this.api._put('unsubscribe_all', params);
   }
