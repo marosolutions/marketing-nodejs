@@ -566,132 +566,127 @@ set.
 ## Reports
 
 ### Instantiation:
-
-    new Maropost.Api.Reports($myAccountId, $myAuthToken)
+```javascript
+new Maropost.Api.Reports($myAccountId, $myAuthToken)
+```
 
 ### Available methods:
- - `get(int $page)`
+ - `get(page)`
    - returns the list of reports
-   - `$page`: page # (>= 1). Up to 200 records returned per page.
+   - `page`: page # (>= 1). Up to 200 records returned per page.
 
- - `getReport(int $id)`
+ - `getReport(id)`
    - Gets the list of reports
-   - `$id`: report ID
+   - `id`: report ID
 
  - `getOpens(
-        int $page,
-        array $fields = [],
-        string $from = null,
-        string $to = null,
-        bool $unique = null,
-        string $email = null,
-        string $uid = null,
-        int $per = null
+      page,
+      fields = [],
+      from = null,
+      to = null,
+      unique = null,
+      email = null,
+      uid = null,
+      per = null
     )`
    * returns the list of open reports based on filters and fields provided
-   - `$page`: page # (>= 1). Up to 200 records returned per page.
-   * `$fields`: contact field names to retrieve
-   * `$from`: the beginning of date range filter
-   * `$to`: the end of the date range filter
-   * `$unique`: when true, gets only unique opens
-   * `$email`: filters by provided email in the contact
-   * `$uid`: filters by uid
-   * `$per`: determines how many records per request to receive
+   - `page`: page # (>= 1). Up to 200 records returned per page.
+   * `fields`: contact field names to retrieve
+   * `from`: the beginning of date range filter
+   * `to`: the end of the date range filter
+   * `unique`: when true, gets only unique opens
+   * `email`: filters by provided email in the contact
+   * `uid`: filters by uid
+   * `per`: determines how many records per request to receive
 
  - `getClicks(
-        int $page,
-        array $fields = [],
-        string $from = null,
-        string $to = null,
-        bool $unique = null,
-        string $email = null,
-        string $uid = null,
-        int $per = null
+      page,
+      fields = [],
+      from = null,
+      to = null,
+      unique = null,
+      email = null,
+      uid = null,
+      per = null
     )`
    * returns the list of click reports
-   * `$page`: page # (>= 1). Up to 200 records returned per page.
-   * `$fields`: plucks these contact fields if they exist
-   * `$from`: start of specific date range filter
-   * `$to`: end of date range filter
-   * `$unique`: if true, gets unique records
-   * `$email`: gets Clicks for specific email
-   * `$uid`: gets Clicks for provided uid
-   * `$per`: gets the specified number of records
+   * `page`: page # (>= 1). Up to 200 records returned per page.
+   * `fields`: plucks these contact fields if they exist
+   * `from`: start of specific date range filter
+   * `to`: end of date range filter
+   * `unique`: if true, gets unique records
+   * `email`: gets Clicks for specific email
+   * `uid`: gets Clicks for provided uid
+   * `per`: gets the specified number of records
 
  - `getBounces(
-        int $page,
-        array $fields = [],
-        string $from = null,
-        string $to = null,
-        bool $unique = null,
-        string $email = null,
-        string $uid = null,
-        string $type = null,
-        int $per = null
+      page,
+      fields = [],
+      from = null,
+      to = null,
+      unique = null,
+      email = null,
+      uid = null,
+      type = null,
+      per = null
     )`
    * returns the list of bounce reports
-   * `$page`: page # (>= 1). Up to 200 records returned per page.
-   * `$fields`: plucks these contact fields if they exist
-   * `$from`: start of specific date range filter
-   * `$to`: end of date range filter
-   * `$unique`: if true, gets unique records
-   * `$email`: gets Bounces for specific email
-   * `$uid`: gets Bounces for provided uid
-   * `$per`: gets the specified number of records
+   * `page`: page # (>= 1). Up to 200 records returned per page.
+   * `fields`: plucks these contact fields if they exist
+   * `from`: start of specific date range filter
+   * `to`: end of date range filter
+   * `unique`: if true, gets unique records
+   * `email`: gets Bounces for specific email
+   * `uid`: gets Bounces for provided uid
+   * `per`: gets the specified number of records
 
  - `getUnsubscribes(
-        int $page,
-        array $fields = [],
-        string $from = null,
-        string $to = null,
-        bool $unique = null,
-        string $email = null,
-        string $uid = null,
-        int $per = null
+      page,
+      fields = [],
+      from = null,
+      to = null,
+      unique = null,
+      email = null,
+      uid = null,
+      per = null
     )`
    * returns the list of Unsubscribes with provided filter constraints
-   * `$page`: page # (>= 1). Up to 200 records returned per page.
-   * `$fields`: plucks these contact fields if they exist
-   * `$from`: start of specific date range filter
-   * `$to`: end of date range filter
-   * `$unique` if true, gets unique records
-   * `$email` gets Unsubscribes for specific email
-   * `$uid` gets Unsubscribes for provided uid
-   * `$per` gets the specified number of records
+   * `page`: page # (>= 1). Up to 200 records returned per page.
+   * `fields`: plucks these contact fields if they exist
+   * `from`: start of specific date range filter
+   * `to`: end of date range filter
+   * `unique` if true, gets unique records
+   * `email` gets Unsubscribes for specific email
+   * `uid` gets Unsubscribes for provided uid
+   * `per` gets the specified number of records
 
  - `getComplaints(
-        array $fields = [],
-        string $from = null,
-        string $to = null,
-        bool $unique = null,
-        string $email = null,
-        string $uid = null,
-        int $per = null
+      fields = [],
+      from = null,
+      to = null,
+      unique = null,
+      email = null,
+      uid = null,
+      per = null
     )`
    * returns the list of complaints filtered by provided params
-   * `$page`: page # (>= 1). Up to 200 records returned per page.
-   * `$fields`: plucks these contact fields if they exist
-   * `$from`: start of specific date range filter
-   * `$to`: end of date range filter
-   * `$unique`: if true, gets unique records
-   * `$email`: gets Complaints for specific email
-   * `$uid`: gets Complaints for provided uid
-   * `$per`: gets the specified number of records
+   * `page`: page # (>= 1). Up to 200 records returned per page.
+   * `fields`: plucks these contact fields if they exist
+   * `from`: start of specific date range filter
+   * `to`: end of date range filter
+   * `unique`: if true, gets unique records
+   * `email`: gets Complaints for specific email
+   * `uid`: gets Complaints for provided uid
+   * `per`: gets the specified number of records
 
- - `getAbReports(
-        string $name,
-        int $page,
-        string $from = null,
-        string $to = null,
-        int $per = null
-    )`
+ - `getAbReports(name, page, from = null, to = null, per = null)`
    * returns the list of Ab Reports
-   * `$name`: to get ab_reports with mentioned name
-   * `$page`: page # (>= 1). Up to 200 records returned per page.
-   * `$from`: beginning of date range filter
-   * `$to`: end of date range filter
-   * `$per`: gets the mentioned number of reports
+   * `name`: to get ab_reports with mentioned name
+   * `page`: page # (>= 1). Up to 200 records returned per page.
+   * `from`: beginning of date range filter
+   * `to`: end of date range filter
+   * `per`: gets the mentioned number of reports
 
- - `getJourneys(int $page)`
+ - `getJourneys(page)`
    * returns the list of all Journeys
-   * `$page`: page # (>= 1). Up to 200 records returned per page.
+   * `page`: page # (>= 1). Up to 200 records returned per page.
