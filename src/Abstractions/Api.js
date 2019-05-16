@@ -1,6 +1,7 @@
 var fetch = require('node-fetch');
 
 var OperationResult = require('./OperationResult');
+var Helpers = require('../Helpers/Helpers');
 
 class Api {
 
@@ -47,7 +48,7 @@ class Api {
    * @return {string}
    */
   url(overrideResource = null) {
-    var url = 'https://api.maropost.com/accounts/';
+    var url = Helpers.API_URL;
     var resource = this._resource;
     // overrides original resource if specified
     resource = (overrideResource === null) ? resource : overrideResource;
