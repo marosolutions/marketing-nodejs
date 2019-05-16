@@ -371,52 +371,53 @@ new Maropost.Api.Contacts(myAccountId, myAuthToken)
 ## Journeys
 
 ### Instantiation:
-
-    new Maropost.Api.Journeys($myAccountId, $myAuthToken)
+```javascript
+new Maropost.Api.Journeys($myAccountId, $myAuthToken)
+```
 
 ### Available methods:
 
- - `get(int $page)`
+ - `get(page)`
      * Gets the list of journeys
-   - `$page`: page # (>= 1). Up to 200 records returned per page.
+   - `page`: page # (>= 1). Up to 200 records returned per page.
 
- - `getCampaigns(int $journeyId, int $page)`
+ - `getCampaigns(journeyId, page)`
      * Gets the list of all campaigns for the specified journey
-   - `$page`: page # (>= 1). Up to 200 records returned per page.
+   - `page`: page # (>= 1). Up to 200 records returned per page.
 
- - `getContacts(int $journeyId, int $page)`
+ - `getContacts(journeyId, page)`
      * Gets the list of all contacts for the specified journey
-   - `$page`: page # (>= 1). Up to 200 records returned per page.
+   - `page`: page # (>= 1). Up to 200 records returned per page.
 
- - `stopAll(int $contactId, string $recipientEmail, string $uid)`
+ - `stopAll(contactId, recipientEmail, uid)`
      * Stops all journeys, filtered for the matching parameters
-     * `$contactId`: this filter ignored unless greater than 0
-     * `$recipientEmail`: this filter ignored if null
-     * `$uid`: this filter ignored if null
+     * `contactId`: this filter ignored unless greater than 0
+     * `recipientEmail`: this filter ignored if null
+     * `uid`: this filter ignored if null
 
- - `pauseJourneyForContact(int $journeyId, int $contactId)`
+ - `pauseJourneyForContact(journeyId, contactId)`
      * Pause the specified journey for the specified contact
 
- - `pauseJourneyForUid(int $journeyId, string $uid)`
+ - `pauseJourneyForUid(journeyId, uid)`
      * Pause the specified journey for the contact having the specified UID
 
- - `resetJourneyForContact(int $journeyId, int $contactId)`
+ - `resetJourneyForContact(journeyId, contactId)`
      * Reset the specified journey for the specified active/paused contact. 
      Resetting a contact to the beginning of the journeys will result in 
      sending of the same journey campaigns as originally sent.
 
- - `public function resetJourneyForUid(int $journeyId, string $uid)`
+ - `public function resetJourneyForUid(journeyId, uid)`
      * Reset the specified journey for the active/paused contact having the 
      specified UID. Resetting a contact to the beginning of the journeys 
      will result in sending of the same journey campaigns as originally sent.
 
- - `public function startJourneyForContact(int $journeyId, int $contactId)`
+ - `public function startJourneyForContact(journeyId, contactId)`
      * Restarts a journey for a paused contact. Adds a new contact in 
      journey. Retriggers the journey for a contact who has finished its 
      journey once. (To retrigger, *make sure* that "Retrigger Journey" option 
      is enabled.)
 
- - `startJourneyForUid(int $journeyId, string $uid)`
+ - `startJourneyForUid(journeyId, uid)`
      * Restarts a journey for a paused contact having the specified UID. 
      Adds a new contact in journey. Retriggers the journey for a contact 
      who has finished its journey once. (To retrigger, *make sure* that 
