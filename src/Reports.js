@@ -1,3 +1,4 @@
+var Api = require('./Abstractions/Api');
 var Helpers = require('./Helpers/Helpers');
 
 class Reports {
@@ -12,6 +13,8 @@ class Reports {
     this.auth_token = authToken;
     this.accountId = accountId;
     this.resource = 'reports';
+
+    this.api = new Api(this.accountId, this.auth_token, this.resource);
   }
 
   /**
@@ -24,7 +27,7 @@ class Reports {
   }
 
   /**
-   * Gets the list of reports
+   * Gets report by id
    * @param {int} id report ID
    * @return OperationResult
    */
@@ -56,7 +59,7 @@ class Reports {
       per = null
   ) {
     var params = {
-      'fields': fields.join(','),
+      'fields': (fields) ? fields.join(',') : '',
       'from': (from) ? Helpers.formatDate(from) : null,
       'to': (to) ? Helpers.formatDate(to) : null,
       'unique': unique,
@@ -65,7 +68,7 @@ class Reports {
       'per': per,
       'page': page
     };
-    sanitizedParams = this.api._discardNullAndEmptyValues(params);
+    var sanitizedParams = this.api._discardNullAndEmptyValues(params);
     return this.api._get('opens', sanitizedParams);
   }
 
@@ -102,7 +105,7 @@ class Reports {
       'per': per,
       'page': page
     };
-    sanitizedParams = this.api._discardNullAndEmptyValues(params);
+    var sanitizedParams = this.api._discardNullAndEmptyValues(params);
     return this.api._get('clicks', sanitizedParams);
   }
 
@@ -142,7 +145,7 @@ class Reports {
       'per': per,
       'page': page
     };
-    sanitizedParams = this.api._discardNullAndEmptyValues(params);
+    var sanitizedParams = this.api._discardNullAndEmptyValues(params);
     return this.api._get('bounces', sanitizedParams);
   }
 
@@ -179,7 +182,7 @@ class Reports {
       'per': per,
       'page': page
     };
-    sanitizedParams = this.api._discardNullAndEmptyValues(params);
+    var sanitizedParams = this.api._discardNullAndEmptyValues(params);
     return this.api._get('unsubscribes', sanitizedParams);
   }
 
@@ -216,7 +219,7 @@ class Reports {
       'per': per,
       'page': page
     };
-    sanitizedParams = this.api._discardNullAndEmptyValues(params);
+    var sanitizedParams = this.api._discardNullAndEmptyValues(params);
     return this.api._get('complaints', sanitizedParams);
   }
 
@@ -238,14 +241,15 @@ class Reports {
     per = null
   ) {
     this.resource = '';
-    params = {
+    this.api = new Api(this.accountId, this.auth_token, this.resource);
+    var params = {
       'name': name,
       'from': (from) ? Helpers.formatDate(from) : null,
       'to': (to) ? Helpers.formatDate(to) : null,
       'per': per,
       'page': page
     };
-    sanitizedParams = this.api._discardNullAndEmptyValues(params);
+    var sanitizedParams = this.api._discardNullAndEmptyValues(params);
     return this.api._get('ab_reports', sanitizedParams);
   }
 
