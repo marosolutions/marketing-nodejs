@@ -150,4 +150,4 @@ class Journeys {
 	}
 }
 
-module.exports = Reports;
+module.exports = Journeys;
