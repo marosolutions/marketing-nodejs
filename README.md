@@ -101,19 +101,18 @@ new Maropost.Api.Campaigns(myAccountId, myAuthToken)
    
 ## AB Test Campaigns
 ### Instantiation:
-
-    new Maropost.Api.AbTestCampaigns($myAccountId, $myAuthToken)
+```javascript
+new Maropost.Api.AbTestCampaigns($myAccountId, $myAuthToken)
+```
 
 ### Available Methods:
- - `createAbTest(string $name, string $fromEmail, string $replyTo,
-            string $address, string $language, array $campaignGroupsAttributes,
-            string $sendAt)`
-   - `$name`: name of the new campaign
-   - `$fromEmail`: default sender email address for campaign emails
-   - `$replyTo`: default reply-to email address for campaign emails
-   - `$address`: default physical address included on campaign emails
-   - `$language`: ISO 639-1 language code (e.g, `"en"`). 2 characters.
-   - `$campaignGroupsAttributes`: array of attributes. Each attribute is
+ - `createAbTest(name, fromEmail, replyTo, address, language, campaignGroupsAttributes, sendAt)`
+   - `name`: name of the new campaign
+   - `fromEmail`: default sender email address for campaign emails
+   - `replyTo`: default reply-to email address for campaign emails
+   - `address`: default physical address included on campaign emails
+   - `language`: ISO 639-1 language code (e.g, `"en"`). 2 characters.
+   - `campaignGroupsAttributes`: array of attributes. Each attribute is
    itself an object with the following properties (all strings):
      - `name`: name of the group
      - `content_id`: content ID
@@ -121,7 +120,7 @@ new Maropost.Api.Campaigns(myAccountId, myAuthToken)
      - `from_name`: "from name" on emails
      - `percentage`: percentage of emails that should be sent with these
      settings.
-   - `$sendAt`: DateTime string having the format  YYYY-MM-DDTHH:MM:SS-05:00
+   - `sendAt`: DateTime string having the format `YYYY-MM-DD HH:mm:ss`
 
 ## Transactional Campaigns
 
