@@ -36,8 +36,10 @@ class Api {
    */
   getQueryString(keyValuePairs) {
     var queryStr = (this._authToken) ? '?auth_token=' + this._authToken : '';
-    for (var key in keyValuePairs) {
-      queryStr += '&' + key +  '=' + keyValuePairs[key];
+    if(keyValuePairs) {
+      for (var key in keyValuePairs) {
+        queryStr += '&' + key +  '=' + keyValuePairs[key];
+      }
     }
     return queryStr.replace(/\s/g , '+');
   }

@@ -50,7 +50,7 @@ class TransactionalCampaigns {
       'from_name': fromName,
       'from_email': fromEmail,
       'reply_to': replyTo,
-      'content_id': String($contentId),
+      'content_id': String(contentId),
       'email_preview_link': emailPreviewLink,
       'address': address,
       'language': language
@@ -62,7 +62,7 @@ class TransactionalCampaigns {
     var object = {
       campaign: campaign
     };
-    return this.api._post(null, [], object);
+    return this.api._post('', [], object);
   }
 
   /**
@@ -149,14 +149,14 @@ class TransactionalCampaigns {
           if (typeof key !== 'string') {
             return new OperationResult(null, 'All keys in your recipientCustomFields array must be strings.');
           }
-          if (typeof recipientCustomFields[key] !== 'object') {
+          if (typeof recipientCustomFields[key] === 'object') {
             return new OperationResult(null, 'All values in your recipientCustomFields array must be non-null scalars (string, number).');
           }
         }
         emailObj['custom_field'] = recipientCustomFields;
       }
     } else {
-      emailObj['contact_id'] = contact_id;
+      emailObj['contact_id'] = contactId;
     }
     if (sendAtHour > 0 && endAtHour <= 12) {
       if (!(sendAtMinute >= 0 && sendAtMinute <= 60)) {
@@ -194,7 +194,7 @@ class TransactionalCampaigns {
         if (typeof key !== 'string') {
           return new OperationResult(null, 'All keys in your tags array must be strings.');
         }
-        if (typeof tags[key] !== 'object') {
+        if (typeof tags[key] === 'object') {
           return new OperationResult(null, 'All values in your tags array must be non-null scalars (string, number).');
         }
       }
@@ -202,8 +202,8 @@ class TransactionalCampaigns {
     }
     if (ctags && ctags.length) {
       for (var key in ctags) {
-        if (typeof ctags[key] !== 'object') {
-          return new OperationResult(null, 'All values in your tags array must be non-null scalars (string, number).');
+        if (typeof ctags[key] === 'object') {
+          return new OperationResult(null, 'All values in your ctags array must be non-null scalars (string, number).');
         }
       }
       emailObj['add_ctags'] = ctags;

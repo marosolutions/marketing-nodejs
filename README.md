@@ -47,7 +47,7 @@ The specific APIs contained are:
 
 - [Campaigns](#campaigns) [Done]
 - [AB Test Campaigns](#ab-test-campaigns) [Done]
-- [Transactional Campaigns](#transactional-campaigns)
+- [Transactional Campaigns](#transactional-campaigns) [Done]
 - [Contacts](#contacts) [Done]
 - [Journeys](#journeys) [Done]
 - [Product and Revenue](#product-and-revenue)

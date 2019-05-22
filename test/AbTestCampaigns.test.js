@@ -39,7 +39,7 @@ describe('Creates an Ab Test Campaign', function() {
     ];
 
     var result = await api.createAbTest(name, fromEmail, replyTo, address, language, campaignAttr, commit, sendAt);
-    console.log('>> result', result)
-    expect(result).toEqual('');
+    expect(response.isSuccess).toBeTruthy();
+    expect(response.errorMessage).toEqual('');
   }, 60000);
 });

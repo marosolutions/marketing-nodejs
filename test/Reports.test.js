@@ -14,7 +14,6 @@ describe('Gets the list of reports', function() {
   }, 60000);
 });
 
-// error in this api
 describe('Gets report by id', function() {
   it('getReport(id)', async () => {
     var api = new Reports(ACCOUNT_ID, AUTH_TOKEN);
