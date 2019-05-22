@@ -369,7 +369,6 @@ class Contacts {
    * @return OperationResult
    */
   unsubscribeAll(contactFieldValue, contactFieldName = 'email') {
-    var key = `contact[${contactFieldName}]`;
     var params = {
       [key]: contactFieldValue
     };

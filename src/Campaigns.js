@@ -85,7 +85,7 @@ class Campaigns {
    * Gets a list of Link Reports for the specified Campaign
    *
    * @param {int} id The campaign ID
-   * @param {bool|null} $unique Gets for unique contacts
+   * @param {bool|null} unique Gets for unique contacts
    * @param {int} page page #. (>= 1)
    * @return OperationResult
    */
@@ -149,8 +149,8 @@ class Campaigns {
   /**
    * Gets a list of complain reports for the specified campaign
    *
-   * @param int $id The campaign ID
-   * @param int $page page #. (>= 1)
+   * @param int id The campaign ID
+   * @param int page page #. (>= 1)
    * @return OperationResult
    */
   getComplaintReports(id, page) {

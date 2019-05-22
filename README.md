@@ -45,14 +45,14 @@ operations, might not provide any data.
 # Specific APIs
 The specific APIs contained are:
 
-- [Campaigns](#campaigns)
-- [AB Test Campaigns](#ab-test-campaigns)
+- [Campaigns](#campaigns) [Done]
+- [AB Test Campaigns](#ab-test-campaigns) [Done]
 - [Transactional Campaigns](#transactional-campaigns)
-- [Contacts](#contacts)
-- [Journeys](#journeys)
+- [Contacts](#contacts) [Done]
+- [Journeys](#journeys) [Done]
 - [Product and Revenue](#product-and-revenue)
 - [Relational Tables](#relational-tables)
-- [Reports](#reports)
+- [Reports](#reports) [Done]
 
 ## Campaigns
 ### Instantiation:
@@ -102,7 +102,7 @@ new Maropost.Api.Campaigns(myAccountId, myAuthToken)
 ## AB Test Campaigns
 ### Instantiation:
 ```javascript
-new Maropost.Api.AbTestCampaigns($myAccountId, $myAuthToken)
+new Maropost.Api.AbTestCampaigns(myAccountId, myAuthToken)
 ```
 
 ### Available Methods:
@@ -125,76 +125,74 @@ new Maropost.Api.AbTestCampaigns($myAccountId, $myAuthToken)
 ## Transactional Campaigns
 
 ### Instantiation:
-
-    new Maropost.Api.TransactionalCampaigns($myAccountId, $myAuthToken)
+```javascript
+new Maropost.Api.TransactionalCampaigns(myAccountId, myAuthToken)
+```
 
 ### Available methods:
- - `get(int $page)`
+ - `get(page)`
      * returns the list of Transaction Campaigns
-   - `$page`: page # (>= 1). Up to 200 records returned per page.
- - `create(string $name, string $subject, string $preheader,
-        string $fromName, string $fromEmail, string $replyTo, 
-        int $contentId, bool $emailPreviewLink, string $address,
-        string $language, string... $ctags)`
+   - `page`: page # (>= 1). Up to 200 records returned per page.
+ - `create(name, subject, preheader, fromName, fromEmail, replyTo, contentId, emailPreviewLink, address, language, ctags)`
      * Creates a Transactional Campaign
-     * `$name` campaign name
-     * `$subject` campaign subject
-     * `$preheader` campaign preheader
-     * `$fromName` sender name in the email
-     * `$fromEmail` sender email address
-     * `$replyTo` reply-to email address
-     * `$contentId`
-     * `$emailPreviewLink`
-     * `$address` physical address
-     * `$language` ISO 639-1 language code
-     * `...$ctags` array of campaign tags
+     * `name` campaign name
+     * `subject` campaign subject
+     * `preheader` campaign preheader
+     * `fromName` sender name in the email
+     * `fromEmail` sender email address
+     * `replyTo` reply-to email address
+     * `contentId`
+     * `emailPreviewLink`
+     * `address` physical address
+     * `language` ISO 639-1 language code
+     * `ctags` array of campaign tags
 
- - `sendEmail(int $campaignId, 
-        int $contentId = null,
-        string $contentName = null,
-        string $contentHtmlPart = null,
-        string $contentTextPart = null,
-        int $sendAtHour = null,
-        int $sendAtMinute = null,
-        bool $ignoreDnm = null,
-        int $contactId = null,
-        string $recipientEmail = null,
-        string $recipientFirstName = null,
-        string $recipientLastName = null,
-        array $recipientCustomFields = null,
-        string $bccEmail = null,
-        string $fromName = null,
-        string $fromEmail = null,
-        string $subject = null,
-        string $replyTo = null,
-        string $senderAddress = null,
-        array $tags = null,
-        array $ctags = null
+ - `sendEmail(campaignId,
+      contentId = null,
+      contentName = null,
+      contentHtmlPart = null,
+      contentTextPart = null,
+      sendAtHour = null,
+      sendAtMinute = null,
+      ignoreDnm = null,
+      contactId = null,
+      recipientEmail = null,
+      recipientFirstName = null,
+      recipientLastName = null,
+      recipientCustomFields = null,
+      bccEmail = null,
+      fromName = null,
+      fromEmail = null,
+      subject = null,
+      replyTo = null,
+      senderAddress = null,
+      tags = null,
+      ctags = null
     )`
      * Sends a transactional campaign email to a recipient. Sender's 
      information will be automatically fetched from the transactional 
      campaign, unless provided in the function arguments.
-     * `$campaignId`: must be a campaign that already exists when you call `$svc->get()`. If you don't have one, first call `$svc->create()`.
-     * `$contentId`: If provided, the transactional campaign's content will be replaced by this content.
-     * `$contentName`: If $contentId is null, the transactional campaign's content name will be replaced by this name.
-     * `$contentHtmlPart`: If $contentId is null, the transactional campaign's content HTML part will be replaced by this HTML part.
-     * `$contentTextPart`: If $contentId is null, the transactional campaign's content Text part will be replaced by this Text part.
-     * `$sendAtHour`: Must be 1-12. Otherwise the email will go out immediately. If the hour is less than the current hour, the email will go out the following day.
-     * `$sendAtMinute`: Must be 0-60. Otherwise will be treated as 0. If the hour and minute combine to less than the current time, the email will go out the following day.
-     * `$ignoreDnm`: If true, ignores the Do Not Mail list for the recipient contact.
-     * `$contactId`: contact ID of the recipient.
-     * `$recipientEmail`: email address. Ignored unless `$contactId` is null. Otherwise, it must be a well-formed email address according to `FILTER_VALIDATE_EMAIL`.
-     * `$recipientFirstName`: recipient's first name. Ignored unless `$contactId` is null.
-     * `$recipientLastName`: recipient's last name. Ignored unless `$contactId` is null.
-     * `$recipientCustomFields`: custom fields for the recipient. Ignored unless `$contactId` is null. Is an associative array where the item key is the name of the custom field, and the item value is the field value. All keys must be strings. All values must be non-null scalars.
-     * `$bccEmail`: BCC recipient. May only pass a single email address, empty string, or null. If provided, it must be a well-formed email address according to `FILTER_VALIDATE_EMAIL`.
-     * `$fromName`: sender's name. If `$fromEmail` is set, it overrides the transactional campaign default sender name. Ignored otherwise.
-     * `$fromEmail`: sender's email address. Overrides the transactional campaign default sender email.
-     * `$subject`: subject line of email. Overrides the transactional campaign default subject.
-     * `$replyTo`: reply-to address. Overrides the transactional campaign default reply-to.
-     * `$senderAddress`: physical address of sender. Overrides the transactional campaign default sender address.
-     * `$tags`: associative array where the item key is the name of the tag within the content, and the item value is the tag's replacement upon sending. All keys must be strings. All values must be non-null scalars.
-     * `$ctags`: campaign tags. Must be a simple array of scalar values.
+     * `campaignId`: must be a campaign that already exists when you call `svc.get()`. If you don't have one, first call `svc.create()`.
+     * `contentId`: If provided, the transactional campaign's content will be replaced by this content.
+     * `contentName`: If contentId is null, the transactional campaign's content name will be replaced by this name.
+     * `contentHtmlPart`: If contentId is null, the transactional campaign's content HTML part will be replaced by this HTML part.
+     * `contentTextPart`: If contentId is null, the transactional campaign's content Text part will be replaced by this Text part.
+     * `sendAtHour`: Must be 1-12. Otherwise the email will go out immediately. If the hour is less than the current hour, the email will go out the following day.
+     * `sendAtMinute`: Must be 0-60. Otherwise will be treated as 0. If the hour and minute combine to less than the current time, the email will go out the following day.
+     * `ignoreDnm`: If true, ignores the Do Not Mail list for the recipient contact.
+     * `contactId`: contact ID of the recipient.
+     * `recipientEmail`: email address. Ignored unless `contactId` is null. Otherwise, it must be a well-formed email address according to `FILTER_VALIDATE_EMAIL`.
+     * `recipientFirstName`: recipient's first name. Ignored unless `contactId` is null.
+     * `recipientLastName`: recipient's last name. Ignored unless `contactId` is null.
+     * `recipientCustomFields`: custom fields for the recipient. Ignored unless `contactId` is null. Is an associative array where the item key is the name of the custom field, and the item value is the field value. All keys must be strings. All values must be non-null scalars.
+     * `bccEmail`: BCC recipient. May only pass a single email address, empty string, or null. If provided, it must be a well-formed email address according to `validateEmail`.
+     * `fromName`: sender's name. If `fromEmail` is set, it overrides the transactional campaign default sender name. Ignored otherwise.
+     * `fromEmail`: sender's email address. Overrides the transactional campaign default sender email.
+     * `subject`: subject line of email. Overrides the transactional campaign default subject.
+     * `replyTo`: reply-to address. Overrides the transactional campaign default reply-to.
+     * `senderAddress`: physical address of sender. Overrides the transactional campaign default sender address.
+     * `tags`: associative array where the item key is the name of the tag within the content, and the item value is the tag's replacement upon sending. All keys must be strings. All values must be non-null scalars.
+     * `ctags`: campaign tags. Must be a simple array of scalar values.
      
 ## Contacts
 
@@ -371,7 +369,7 @@ new Maropost.Api.Contacts(myAccountId, myAuthToken)
 
 ### Instantiation:
 ```javascript
-new Maropost.Api.Journeys($myAccountId, $myAuthToken)
+new Maropost.Api.Journeys(myAccountId, myAuthToken)
 ```
 
 ### Available methods:
@@ -567,7 +565,7 @@ set.
 
 ### Instantiation:
 ```javascript
-new Maropost.Api.Reports($myAccountId, $myAuthToken)
+new Maropost.Api.Reports(myAccountId, myAuthToken)
 ```
 
 ### Available methods:
