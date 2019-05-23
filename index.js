@@ -5,8 +5,13 @@ module.exports =
 {
   Maropost: {
     Api: {
+      AbTestCampaigns,
       Campaigns,
-      Contacts
+      Contacts,
+      Journeys,
+      ProductAndRevenue,
+      Reports,
+      TransactionalCampaigns
     }
   }
 };
