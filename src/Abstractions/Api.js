@@ -175,7 +175,7 @@ class Api {
 
     return fetch(url, requestData)
     .then(async response => {
-      const jsonResponse = await response.json()
+      const jsonResponse = await response.text()
       var _apiResponse = {
         body: jsonResponse,
         status: response.status
@@ -212,7 +212,7 @@ class Api {
 
     return fetch(url, requestData)
     .then(async response => {
-      const jsonResponse = (await response.text()) ? await response.json() : null
+      const jsonResponse = await response.text()
       var _apiResponse = {
         body: jsonResponse,
         status: response.status
