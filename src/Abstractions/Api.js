@@ -12,10 +12,11 @@ class Api {
    * @param {string} authToken
    * @param {string} resource
    */
-  constructor(accountId, authToken, resource) {
+  constructor(accountId, authToken, resource, baseUrl = null) {
     this._authToken = authToken;
     this._accountId = accountId;
     this._resource = resource;
+    this._baseUrl = baseUrl;
   }
 
   /**
@@ -50,6 +51,10 @@ class Api {
    * @return {string}
    */
   url(overrideResource = null) {
+    if (this._baseUrl) {
+      return this._baseUrl;
+    }
+
     var url = Helpers.API_URL;
     var resource = this._resource;
     // overrides original resource if specified
@@ -175,7 +180,13 @@ class Api {
 
     return fetch(url, requestData)
     .then(async response => {
-      const jsonResponse = await response.text()
+      var jsonResponse;
+      const text = await response.text();
+      try {
+        jsonResponse = JSON.parse(text);
+      } catch(e) {
+        jsonResponse = text;
+      }
       var _apiResponse = {
         body: jsonResponse,
         status: response.status
@@ -212,7 +223,13 @@ class Api {
 
     return fetch(url, requestData)
     .then(async response => {
-      const jsonResponse = await response.text()
+      var jsonResponse;
+      const text = await response.text();
+      try {
+        jsonResponse = JSON.parse(text);
+      } catch(e) {
+        jsonResponse = text;
+      }
       var _apiResponse = {
         body: jsonResponse,
         status: response.status

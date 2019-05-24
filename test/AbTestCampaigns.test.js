@@ -8,15 +8,17 @@ var TODAY = Helpers.today('YYYY-MM-DD HH:mm:ss');
 var TOMORROW = Helpers.additionalDate(TODAY, 1, 'YYYY-MM-DD HH:mm:ss')
 
 /*
+  ERROR
   result OperationResult {
-  data:
-    { base:
-      [ 'Winning criteria must be selected',
-        'Campaign groups can\'t be less than two.',
-        'No recipients were selected.' ] },
-  errorMessage:
-    '400: Either your accountId, authToken, or one (or more) of your function arguments are invalid.',
-  isSuccess: false }
+    data:
+      { base:
+        [ 'Winning criteria must be selected',
+          'Campaign groups can\'t be less than two.',
+          'No recipients were selected.' ] },
+    errorMessage:
+      '400: Either your accountId, authToken, or one (or more) of your function arguments are invalid.',
+    isSuccess: false 
+  }
 */
 describe('Creates an Ab Test Campaign', function() {
   it('createAbTest()', async () => {
@@ -49,8 +51,8 @@ describe('Creates an Ab Test Campaign', function() {
       }
     ];
 
-    // var result = await api.createAbTest(name, fromEmail, replyTo, address, language, campaignAttr, commit, sendAt);
-    // expect(response.isSuccess).toBeTruthy();
-    // expect(response.errorMessage).toEqual('');
+    var result = await api.createAbTest(name, fromEmail, replyTo, address, language, campaignAttr, commit, sendAt);
+    expect(response.isSuccess).toBeTruthy();
+    expect(response.errorMessage).toEqual('');
   }, 60000);
 });

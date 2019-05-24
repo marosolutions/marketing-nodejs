@@ -188,6 +188,7 @@ describe('getSoftBounceReports by id and page', function() {
   }, 60000);
 });
 
+// ERROR
 describe('getHardBounceReports by id and page', function() {
   it('getHardBounceReports(id, page = 1)', async (done) => {
     var campaignId = 0;

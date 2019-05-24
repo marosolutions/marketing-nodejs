@@ -14,15 +14,16 @@ class RelationalTableRows {
     this.auth_token = authToken;
     this.accountId = accountId;
     this.resource = tableName;
+    this.baseUrl = 'https://rdb.maropost.com/' + accountId + '/' + tableName;
 
-    this.api = new Api(this.accountId, this.auth_token, this.resource);
+    this.api = new Api(this.accountId, this.auth_token, this.resource, this.baseUrl);
   }
   
   /**
    * Gets the records of the Relational Table
    * @return OperationResult
    */
-  getOrder() {
+  get() {
     return this.api._get('');
   }
 
@@ -91,21 +92,13 @@ class RelationalTableRows {
    * @param {mixed} idFieldValue value of the identifier field, for the record to get.
    * @return OperationResult
    */
-  upsert(idFieldName, idFieldValue) {
+  delete(idFieldName, idFieldValue) {
     var record = {
       'record': {
         [idFieldName]: idFieldValue
       }
     };
-    return this.api._delete('delete', [], null, requestRecords);
-  }
-
-  /**
-   * @param string|null $overrideResource ignored
-   * @return string
-   */
-  url(overrideResource = null) {
-      return 'https://rdb.maropost.com/' + $this.accountId + '/' + this.resource;
+    return this.api._delete('delete', [], null, record);
   }
 
   /**

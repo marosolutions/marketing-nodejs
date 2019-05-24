@@ -50,14 +50,14 @@ operations, might not provide any data.
 # Specific APIs
 The specific APIs contained are:
 
-- [Campaigns](#campaigns) [Done]
-- [AB Test Campaigns](#ab-test-campaigns) [Done]
-- [Transactional Campaigns](#transactional-campaigns) [Done]
-- [Contacts](#contacts) [Done]
-- [Journeys](#journeys) [Done]
-- [Product and Revenue](#product-and-revenue)
-- [Relational Tables](#relational-tables)
-- [Reports](#reports) [Done]
+- [Campaigns](#campaigns) [Test Checked]
+- [AB Test Campaigns](#ab-test-campaigns) [Test Checked]
+- [Transactional Campaigns](#transactional-campaigns)
+- [Contacts](#contacts)
+- [Journeys](#journeys)
+- [Product and Revenue](#product-and-revenue) [Test Checked]
+- [Relational Table Rows](#relational-table-rows) [Test Checked]
+- [Reports](#reports)
 
 ## Campaigns
 ### Instantiation:
@@ -516,66 +516,61 @@ new Maropost.Api.ProductAndRevenue($myAccountId, $myAuthToken)
 
 ---
 
-## Relational Tables
+## Relational Table Rows
 
 ### Instantiation:
 Unlike the other services, the constructor for this requires a third
-parameter: `$tableName`. So for example:
+parameter: `tableName`. So for example:
+```javascript
+new Maropost.Api.RelationalTables(myAccountId, myAuthToken, tableName);
+```
 
-    $svc = new Maropost.Api.RelationalTables($myAccountId, $myAuthToken, $tableName);
-
-`$tableName` sets which relational table the service's operations should act against.
-To switch tables, you do not need to re-instantiate the service. Instead,
-you can call
-
-    $svc->_setTableName($newTableName);
-
-You can also call `_getTableName()` to determine which table is currently
-set.
+`tableName` sets which relational table the service's operations should act against. To switch tables, you do not need to re-instantiate the service. Simply update the `TableName` property of the instance:
+```javascript
+var rows = new Maropost.Api.RelationalTableRows(myAccountId, myAuthToken, 'table1');
+rows._setTableName('table2');
+```
 
 ### Available functions:
 
  - `get()`
      * Gets the records of the Relational Table
 
- - `show(int $id)`
+ - `show(id)`
      * Gets the specified record from the Relational Table
-     * `$id`: ID of the existing record you wish to read
+     * `id`: ID of the existing record you wish to read
 
- - `create(KeyValue... $keyValues)`
+ - `create(keyValues)`
      * Adds a record to the Relational Table
-     * `...$keyValues`: Multiple `Maropost.Api.InputTypes.KeyValue` objects, for the
-     record to be created, each item consisting of two fields:
-       - `$key`: string representing the name of the field
-       - `$value`: scalar value representing the new value for the field.
+     * `keyValues`: Multiple objects, for the record to be updated, each item consisting of two fields:
+       - `key`: string representing the name of the field
+       - `value`: scalar value representing the new value for the field.
          - Any DateTime strings must be in one of three formats: "MM/DD/YYYY", 
          "YYYY-MM-DD", or "YYYY-MM-DDThh:mm:ssTZD".
        - NOTE: One of the KeyValues must represent the unique identifier.
 
- - `update(KeyValue... $keyValues)`
+ - `update(keyValues)`
      * Updates a record in the Relational Table.
-     * `...$keyValues`: Multiple `Maropost.Api.InputTypes.KeyValue` objects, for the
-     record to be updated, each item consisting of two fields:
-       - `$key`: string representing the name of the field
-       - `$value`: scalar value representing the new value for the field.
+     * `keyValues`: Multiple objects, for the record to be updated, each item consisting of two fields:
+       - `key`: string representing the name of the field
+       - `value`: scalar value representing the new value for the field.
          - Any DateTime strings must be in one of three formats: "MM/DD/YYYY", 
          "YYYY-MM-DD", or "YYYY-MM-DDThh:mm:ssTZD".
        - NOTE: One of the KeyValues must represent the unique identifier.
 
  - `upsert(KeyValue... $keyValues)`
      * Creates or updates a record in the Relational Table.
-     * `...$keyValues`: Multiple `Maropost.Api.InputTypes.KeyValue` objects, for the
-     record to be created or updated, each item consisting of two fields:
-       - `$key`: string representing the name of the field
-       - `$value`: scalar value representing the new value for the field.
+     * `keyValues`: Multiple objects, for the record to be updated, each item consisting of two fields:
+       - `key`: string representing the name of the field
+       - `value`: scalar value representing the new value for the field.
          - Any DateTime strings must be in one of three formats: "MM/DD/YYYY", 
          "YYYY-MM-DD", or "YYYY-MM-DDThh:mm:ssTZD".
        - NOTE: One of the KeyValues must represent the unique identifier.
 
- - `delete(int $idFieldName, $idFieldValue)`
+ - `delete(idFieldName, idFieldValue)`
      * Deletes the given record of the Relational Table
-     * `$idFieldName` name of the field representing the unique identifier (E.g., "id", "email")
-     * `$idFieldValue` value of the identifier field, for the record to delete.
+     * `idFieldName` name of the field representing the unique identifier (E.g., "id", "email")
+     * `idFieldValue` value of the identifier field, for the record to delete.
 
 ---
 

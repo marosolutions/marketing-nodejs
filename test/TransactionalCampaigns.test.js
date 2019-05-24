@@ -1,6 +1,5 @@
 require('dotenv').config()
 var TransactionalCampaigns = require('../src/TransactionalCampaigns');
-var Helpers = require('../src/Helpers/Helpers');
 
 var ACCOUNT_ID = process.env.ACCOUNT_ID;
 var AUTH_TOKEN = process.env.AUTH_TOKEN;
@@ -24,7 +23,7 @@ describe('Gets the list of Transaction Campaigns.', function() {
   }, 60000);
 });
 
-// error => { status: '500', error: 'Internal Server Error' }
+// ERROR => { status: '500', error: 'Internal Server Error' }
 describe('Creates a Transactional Campaign', function() {
   it('create()', async () => {
     var api = new TransactionalCampaigns(ACCOUNT_ID, AUTH_TOKEN);
