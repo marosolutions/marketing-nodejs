@@ -1,5 +1,5 @@
-var Api = require('./Abstractions/Api');
-var OperationResult = require('./Abstractions/OperationResult');
+const Api = require('./Abstractions/Api');
+const OperationResult = require('./Abstractions/OperationResult');
 
 class RelationalTableRows {
   
@@ -34,7 +34,7 @@ class RelationalTableRows {
    * @return OperationResult
    */
   show(idFieldName, idFieldValue) {
-    var record = {
+    let record = {
       'record': {
         [idFieldName]: idFieldValue
       }
@@ -48,11 +48,11 @@ class RelationalTableRows {
    * @return OperationResult
    */
   create(keyValues) {
-    var records = {};
-    for (var key in keyValues) {
+    let records = {};
+    for (let key in keyValues) {
       records[key] = keyValues[key];
     }
-    var requestRecords = {'record': records };
+    let requestRecords = {'record': records };
     return this.api._post('create', [], requestRecords);
   }
 
@@ -63,11 +63,11 @@ class RelationalTableRows {
    * @return OperationResult
    */
   update(keyValues) {
-    var records = {};
-    for (var key in keyValues) {
+    let records = {};
+    for (let key in keyValues) {
       records[key] = keyValues[key];
     }
-    var requestRecords = {'record': records };
+    let requestRecords = {'record': records };
     return this.api._put('update', [], requestRecords);
   }
 
@@ -78,11 +78,11 @@ class RelationalTableRows {
    * @return OperationResult
    */
   upsert(keyValues) {
-    var records = {};
-    for (var key in keyValues) {
+    let records = {};
+    for (let key in keyValues) {
       records[key] = keyValues[key];
     }
-    var requestRecords = {'record': records };
+    let requestRecords = {'record': records };
     return this.api._post('upsert', [], requestRecords);
   }
 
@@ -93,7 +93,7 @@ class RelationalTableRows {
    * @return OperationResult
    */
   delete(idFieldName, idFieldValue) {
-    var record = {
+    let record = {
       'record': {
         [idFieldName]: idFieldValue
       }

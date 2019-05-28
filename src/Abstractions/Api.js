@@ -1,7 +1,7 @@
-var fetch = require('node-fetch');
+const fetch = require('node-fetch');
 
-var OperationResult = require('./OperationResult');
-var Helpers = require('../Helpers/Helpers');
+const OperationResult = require('./OperationResult');
+const Helpers = require('../Helpers/Helpers');
 
 class Api {
 
@@ -36,9 +36,9 @@ class Api {
    * @return {string}
    */
   getQueryString(keyValuePairs) {
-    var queryStr = (this._authToken) ? '?auth_token=' + this._authToken : '';
+    let queryStr = (this._authToken) ? '?auth_token=' + this._authToken : '';
     if(keyValuePairs) {
-      for (var key in keyValuePairs) {
+      for (let key in keyValuePairs) {
         queryStr += '&' + key +  '=' + keyValuePairs[key];
       }
     }
@@ -55,8 +55,8 @@ class Api {
       return this._baseUrl;
     }
 
-    var url = Helpers.API_URL;
-    var resource = this._resource;
+    let url = Helpers.API_URL;
+    let resource = this._resource;
     // overrides original resource if specified
     resource = (overrideResource === null) ? resource : overrideResource;
     url += (!resource) ? this._accountId : this._accountId + '/' + resource;
@@ -73,7 +73,7 @@ class Api {
    * @return {string}
    */
   createApiRequestData(url, method = 'GET', body = null) {
-    var request = {
+    let request = {
       method: method,
       headers: this.getHttpHeaders()
     }
@@ -88,9 +88,9 @@ class Api {
    * @return {array}
    */
   _discardNullAndEmptyValues(params) {
-    var transformedArray = {};
-    for (var key in params) {
-      var value = params[key];
+    let transformedArray = {};
+    for (let key in params) {
+      let value = params[key];
       if (value) {
         transformedArray[key] = value;
       }
@@ -105,19 +105,18 @@ class Api {
    * @return OperationResult
    */
   _get(resource = null, params = [], overrideRootResource = null) {
-    var _apiStatus;
-    var url = this.url(overrideRootResource);
+    let url = this.url(overrideRootResource);
     url += (resource) ? '/' + resource : '';
     // gets in json format per api docs
     url += '.json';
     url += this.getQueryString(params);
 
-    var requestData = this.createApiRequestData(url);
+    const requestData = this.createApiRequestData(url);
 
     return fetch(url, requestData)
     .then(async response => {
-      var jsonResponse = await response.json()
-      var _apiResponse = {
+      const jsonResponse = await response.json()
+      const _apiResponse = {
         body: jsonResponse,
         status: response.status
       };
@@ -136,17 +135,17 @@ class Api {
    * @return OperationResult
    */
   _post(resource, params, body, overrideRootResource = null) {
-    var url = this.url(overrideRootResource);
+    let url = this.url(overrideRootResource);
     url += (resource) ? '/' + resource : '';
     url += '.json';
     url += this.getQueryString(params);
 
-    var formData = JSON.stringify(body);
-    var requestData = this.createApiRequestData(url, 'POST', formData);
+    const formData = JSON.stringify(body);
+    const requestData = this.createApiRequestData(url, 'POST', formData);
     return fetch(url, requestData)
     .then(async response => {
       const jsonResponse = await response.json()
-      var _apiResponse = {
+      const _apiResponse = {
         body: jsonResponse,
         status: response.status
       };
@@ -165,14 +164,14 @@ class Api {
    * @return OperationResult
    */
   _put(resource, params, body =  null, overrideRootResource = null) {
-    var requestData;
-    var url = this.url(overrideRootResource);
+    let requestData;
+    let url = this.url(overrideRootResource);
     url += (resource) ? '/' + resource : '';
     url += '.json';
     url += this.getQueryString(params);
     
     if (typeof body === 'object') {
-      var formData = JSON.stringify(body);
+      const formData = JSON.stringify(body);
       requestData = this.createApiRequestData(url, 'PUT', formData);
     } else {
       requestData = this.createApiRequestData(url, 'PUT');
@@ -180,14 +179,14 @@ class Api {
 
     return fetch(url, requestData)
     .then(async response => {
-      var jsonResponse;
+      let jsonResponse;
       const text = await response.text();
       try {
         jsonResponse = JSON.parse(text);
       } catch(e) {
         jsonResponse = text;
       }
-      var _apiResponse = {
+      const _apiResponse = {
         body: jsonResponse,
         status: response.status
       };
@@ -208,14 +207,14 @@ class Api {
    * @return OperationResult
    */
   _delete(resource, params = [], overrideRootResource = null, body = null) {
-    var requestData;
-    var url = this.url(overrideRootResource);
+    let requestData;
+    let url = this.url(overrideRootResource);
     url += (resource) ? '/' + resource : '';
     url += '.json';
     url += this.getQueryString(params);
     
     if (body && typeof body === 'object') {
-      var formData = JSON.stringify(body);
+      const formData = JSON.stringify(body);
       requestData = this.createApiRequestData(url, 'DELETE', formData);
     } else {
       requestData = this.createApiRequestData(url, 'DELETE');
@@ -223,14 +222,14 @@ class Api {
 
     return fetch(url, requestData)
     .then(async response => {
-      var jsonResponse;
+      let jsonResponse;
       const text = await response.text();
       try {
         jsonResponse = JSON.parse(text);
       } catch(e) {
         jsonResponse = text;
       }
-      var _apiResponse = {
+      const _apiResponse = {
         body: jsonResponse,
         status: response.status
       };

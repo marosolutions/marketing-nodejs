@@ -1,5 +1,5 @@
-var Api = require('./Abstractions/Api');
-var OperationResult = require('./Abstractions/OperationResult');
+const Api = require('./Abstractions/Api');
+const OperationResult = require('./Abstractions/OperationResult');
 
 class AbTestCampaigns {
   /**
@@ -60,7 +60,7 @@ class AbTestCampaigns {
     cTags = null,
     segments = null
   ) {
-    var object = {
+    let object = {
       name: name,
       from_email: fromEmail,
       reply_to: replyTo,

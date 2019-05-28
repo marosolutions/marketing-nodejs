@@ -1,5 +1,5 @@
-var Api = require('./Abstractions/Api');
-var OperationResult = require('./Abstractions/OperationResult');
+const Api = require('./Abstractions/Api');
+const OperationResult = require('./Abstractions/OperationResult');
 
 class Contacts {
   
@@ -24,7 +24,7 @@ class Contacts {
    * @return OperationResult
    */
   getForEmail(email) {
-    var emailInUriFormat = {
+    let emailInUriFormat = {
         'contact[email]': email,
     };
     return this.api._get('email', emailInUriFormat);
@@ -38,7 +38,7 @@ class Contacts {
    * @return OperationResult
    */
   getOpens(contactId, page) {
-    var resource = contactId +  '/open_report';
+    let resource = contactId +  '/open_report';
     return this.api._get(resource, {'page': page});
   }
 
@@ -50,7 +50,7 @@ class Contacts {
    * @return OperationResult
    */
   getClicks(contactId, page) {
-    var resource = contactId +  '/click_report';
+    let resource = contactId +  '/click_report';
     return this.api._get(resource, {'page': page});
   }
 
@@ -62,7 +62,7 @@ class Contacts {
    * @return OperationResult
    */
   getForList(listId, page) {
-    var overrideResource = 'lists/' + listId;
+    let overrideResource = 'lists/' + listId;
     return this.api._get('contacts', {'page': page}, overrideResource);
   }
 
@@ -74,7 +74,7 @@ class Contacts {
    * @return OperationResult
    */
   getContactForList(listId, contactId) {
-    var overrideResource = 'lists/' + listId;
+    let overrideResource = 'lists/' + listId;
     return this.api._get('contacts/' + contactId, [], overrideResource);
   }
 
@@ -109,7 +109,7 @@ class Contacts {
     removeFromDNM = true,
     subscribe = true
   ) {
-    var contact = {
+    let contact = {
       'email': email,
       'first_name': firstName,
       'last_name': lastName,
@@ -124,10 +124,10 @@ class Contacts {
     };
     contact = this.api._discardNullAndEmptyValues(contact);
 
-    var overrideResource = 'lists/' + listId;
-    var getResult = await this.getForEmail(email);
+    let overrideResource = 'lists/' + listId;
+    let getResult = await this.getForEmail(email);
     if (getResult.isSuccess) {
-      var contactId = getResult.data['id'];
+      let contactId = getResult.data['id'];
       if (contactId) {
         return this.api._put('contacts/' + contactId, [], contact, overrideResource);
       }
@@ -169,7 +169,7 @@ class Contacts {
     removeFromDNM = true,
     subscribe = true
   ) {
-    var contact = {
+    let contact = {
       'email': email,
       'first_name': firstName,
       'last_name': lastName,
@@ -184,7 +184,7 @@ class Contacts {
     };
     contact = this.api._discardNullAndEmptyValues(contact);
     
-    var overrideResource = 'lists/' + listId;
+    let overrideResource = 'lists/' + listId;
 
     return this.api._put('contacts/' + contactId, [], contact, overrideResource);
   }
@@ -217,7 +217,7 @@ class Contacts {
     removeFromDNM = true,
     subscribe = true
   ) {
-    var contact = {
+    let contact = {
       'email': email,
       'first_name': firstName,
       'last_name': lastName,
@@ -230,9 +230,9 @@ class Contacts {
     };
     contact = this.api._discardNullAndEmptyValues(contact);
 
-    var getResult = await this.getForEmail(email);
+    let getResult = await this.getForEmail(email);
     if (getResult.isSuccess) {
-      var contactId = getResult.data['id'];
+      let contactId = getResult.data['id'];
       if (contactId) {
         return this.api._put(contactId, [], contact);
       }
@@ -275,7 +275,7 @@ class Contacts {
     unsubscribeWorkflowIds = [],
     unsubscribeCampaign = null
   ) {
-    var options = {
+    let options = {
       'subscribe_list_ids': subscribeListIds.join(','),
       'unsubscribe_list_ids': unsubscribeListIds.join(','),
       'unsubscribe_workflow_ids': unsubscribeWorkflowIds.join(','),
@@ -283,7 +283,7 @@ class Contacts {
     };
     options = this.api._discardNullAndEmptyValues(options);
 
-    var contact = {
+    let contact = {
       'email': email,
       'first_name': firstName,
       'last_name': lastName,
@@ -298,9 +298,9 @@ class Contacts {
     };
     contact = this.api._discardNullAndEmptyValues(contact);
 
-    var getResult = await this.getForEmail(email);
+    let getResult = await this.getForEmail(email);
     if (getResult.isSuccess) {
-      var contactId = getResult.data['id'];
+      let contactId = getResult.data['id'];
       if (contactId) {
         return this.api._put(contactId, [], contact);
       }
@@ -315,7 +315,7 @@ class Contacts {
    * @return OperationResult
    */
   deleteFromAllLists(email) {
-    var emailAsArray = {
+    let emailAsArray = {
       'contact[email]': email
     };
     return this.api._delete('delete_all', emailAsArray);
@@ -329,7 +329,7 @@ class Contacts {
    * @return OperationResult
    */
   deleteFromLists(contactId, listIds = []) {
-    var params = [];
+    let params = [];
     if (listIds) {
       params['list_ids'] = listIds.join(',');
     }
@@ -343,7 +343,7 @@ class Contacts {
    * @return OperationResult
    */
   deleteContactForUid(uid) {
-    var params = {'uid': uid};
+    let params = {'uid': uid};
     return this.api._delete('delete_all', params);
   }
 
@@ -355,8 +355,8 @@ class Contacts {
    * @return OperationResult
    */
   deleteListContact(listId, contactId) {
-    var overrideResource = 'lists/' + listId;
-    var resource = 'contacts/' + contactId;
+    let overrideResource = 'lists/' + listId;
+    let resource = 'contacts/' + contactId;
     return this.api._delete(resource, [], overrideResource);
   }
 
@@ -369,7 +369,7 @@ class Contacts {
    * @return OperationResult
    */
   unsubscribeAll(contactFieldValue, contactFieldName = 'email') {
-    var params = {
+    let params = {
       [contactFieldName]: contactFieldValue
     };
     return this.api._put('unsubscribe_all', params);

@@ -1,4 +1,5 @@
-var OperationResult =  require('../Abstractions/OperationResult');
+const OperationResult =  require('../Abstractions/OperationResult');
+
 
 class RelationalTableColumn {
   /**
@@ -54,7 +55,7 @@ class RelationalTableColumn {
       return new OperationResult(null, `Value of column 'field_length' must be a integer.`)
     }
 
-    var result = new OperationResult(null, '');
+    let result = new OperationResult(null, '');
     result.isSuccess = true;
     return result;
   }

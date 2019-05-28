@@ -20,8 +20,8 @@ class OperationResult {
       this.errorMessage = errorMessage;
     }
     else {
-      var statusCode = apiResponse.status
-      var body = (apiResponse.body) ? apiResponse.body : null
+      const statusCode = apiResponse.status
+      const body = (apiResponse.body) ? apiResponse.body : null
       this.data = body;
       this.errorMessage = (this.errorMessage) ? this.errorMessage : (body && body.error) ? body.error : '';
       if (statusCode >= 200 && statusCode < 300) {

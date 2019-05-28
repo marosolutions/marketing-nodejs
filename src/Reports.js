@@ -1,5 +1,5 @@
-var Api = require('./Abstractions/Api');
-var Helpers = require('./Helpers/Helpers');
+const Api = require('./Abstractions/Api');
+const Helpers = require('./Helpers/Helpers');
 
 class Reports {
 
@@ -58,7 +58,7 @@ class Reports {
       uid = null,
       per = null
   ) {
-    var params = {
+    let params = {
       'fields': (fields) ? fields.join(',') : '',
       'from': (from) ? Helpers.formatDate(from) : null,
       'to': (to) ? Helpers.formatDate(to) : null,
@@ -68,7 +68,7 @@ class Reports {
       'per': per,
       'page': page
     };
-    var sanitizedParams = this.api._discardNullAndEmptyValues(params);
+    let sanitizedParams = this.api._discardNullAndEmptyValues(params);
     return this.api._get('opens', sanitizedParams);
   }
 
@@ -95,7 +95,7 @@ class Reports {
     uid = null,
     per = null
   ) {
-    var params = {
+    let params = {
       'fields': fields.join(','),
       'from': (from) ? Helpers.formatDate(from) : null,
       'to': (to) ? Helpers.formatDate(to) : null,
@@ -105,7 +105,7 @@ class Reports {
       'per': per,
       'page': page
     };
-    var sanitizedParams = this.api._discardNullAndEmptyValues(params);
+    let sanitizedParams = this.api._discardNullAndEmptyValues(params);
     return this.api._get('clicks', sanitizedParams);
   }
 
@@ -134,7 +134,7 @@ class Reports {
     type = null,
     per = null
   ) {
-    var params = {
+    let params = {
       'fields': fields.join(','),
       'from': (from) ? Helpers.formatDate(from) : null,
       'to': (to) ? Helpers.formatDate(to) : null,
@@ -145,7 +145,7 @@ class Reports {
       'per': per,
       'page': page
     };
-    var sanitizedParams = this.api._discardNullAndEmptyValues(params);
+    let sanitizedParams = this.api._discardNullAndEmptyValues(params);
     return this.api._get('bounces', sanitizedParams);
   }
 
@@ -172,7 +172,7 @@ class Reports {
     uid = null,
     per = null
   ) {
-    var params = {
+    let params = {
       'fields': fields.join(','),
       'from': (from) ? Helpers.formatDate(from) : null,
       'to': (to) ? Helpers.formatDate(to) : null,
@@ -182,7 +182,7 @@ class Reports {
       'per': per,
       'page': page
     };
-    var sanitizedParams = this.api._discardNullAndEmptyValues(params);
+    let sanitizedParams = this.api._discardNullAndEmptyValues(params);
     return this.api._get('unsubscribes', sanitizedParams);
   }
 
@@ -209,7 +209,7 @@ class Reports {
     uid = null,
     per = null
   ) {
-    var params = {
+    let params = {
       'fields': fields.join(','),
       'from': (from) ? Helpers.formatDate(from) : null,
       'to': (to) ? Helpers.formatDate(to) : null,
@@ -219,7 +219,7 @@ class Reports {
       'per': per,
       'page': page
     };
-    var sanitizedParams = this.api._discardNullAndEmptyValues(params);
+    let sanitizedParams = this.api._discardNullAndEmptyValues(params);
     return this.api._get('complaints', sanitizedParams);
   }
 
@@ -242,14 +242,14 @@ class Reports {
   ) {
     this.resource = '';
     this.api = new Api(this.accountId, this.auth_token, this.resource);
-    var params = {
+    let params = {
       'name': name,
       'from': (from) ? Helpers.formatDate(from) : null,
       'to': (to) ? Helpers.formatDate(to) : null,
       'per': per,
       'page': page
     };
-    var sanitizedParams = this.api._discardNullAndEmptyValues(params);
+    let sanitizedParams = this.api._discardNullAndEmptyValues(params);
     return this.api._get('ab_reports', sanitizedParams);
   }
 

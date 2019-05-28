@@ -1,7 +1,7 @@
-var Api = require('./Abstractions/Api');
-var OperationResult = require('./Abstractions/OperationResult');
-var OrderItemInput = require('./ResultTypes/OrderItemInput');
-var Helpers = require('./Helpers/Helpers');
+const Api = require('./Abstractions/Api');
+const OperationResult = require('./Abstractions/OperationResult');
+const OrderItemInput = require('./ResultTypes/OrderItemInput');
+const Helpers = require('./Helpers/Helpers');
 
 class ProductAndRevenue {
   
@@ -87,7 +87,7 @@ class ProductAndRevenue {
       }
     });
 
-    var order = {
+    let order = {
       'contact': {
         'email': contactEmail,
         'first_name': contactFirstName,
@@ -106,7 +106,7 @@ class ProductAndRevenue {
       order['list_ids'] = listIds;
     }
     if (customFields && customFields.length) {
-      for (var key in customFields) {
+      for (let key in customFields) {
         if (typeof key !== 'string') {
           return new OperationResult(null, 'All keys in your recipientCustomFields array must be strings.');
         }
@@ -117,7 +117,7 @@ class ProductAndRevenue {
       order['custom_field'] = customFields;
     }
     if (addTags && addTags.length) {
-      for (var key in addTags) {
+      for (let key in addTags) {
         if (typeof addTags[key] === 'object') {
           return new OperationResult(null, 'All values in your addTags array must be non-null scalars (string, number).');
         }
@@ -125,15 +125,15 @@ class ProductAndRevenue {
       order['add_tags'] = addTags;
     }
     if (removeTags && removeTags.length) {
-      for (var key in removeTags) {
+      for (let key in removeTags) {
         if (typeof removeTags[key] === 'object') {
           return new OperationResult(null, 'All values in your removeTags array must be non-null scalars (string, number).');
         }
       }
       order['remove_tags'] = removeTags;
     }
-    var object = { order: order }
-    var params = (requireUnique) ? {'unique': true} : [];
+    let object = { order: order }
+    let params = (requireUnique) ? {'unique': true} : [];
     return this.api._post('', params, object);
   }
 
@@ -158,14 +158,14 @@ class ProductAndRevenue {
         return new OperationResult(null, `All orderItems must be instances of OrderItemInput. At least one orderItem was not.`);
       }
     });
-    var order = {
+    let order = {
       'order_date': orderDateTime,
       'order_status': orderStatus,
       'campaign_id': campaignId,
       'coupon_code': couponCode,
       'order_items': orderItems
     };
-    var object = { order: order }
+    let object = { order: order }
     return this.api._put(originalOrderId, [], object);
   }
 
@@ -190,14 +190,14 @@ class ProductAndRevenue {
         return new OperationResult(null, `All orderItems must be instances of OrderItemInput. At least one orderItem was not.`);
       }
     });
-    var order = {
+    let order = {
       'order_date': orderDateTime,
       'order_status': orderStatus,
       'campaign_id': campaignId,
       'coupon_code': couponCode,
       'order_items': orderItems
     }
-    var object = { order: order }
+    let object = { order: order }
     return this.api._put('find', {'where[id]': orderId}, object);
   }
 
@@ -208,7 +208,7 @@ class ProductAndRevenue {
    * @return OperationResult
    */
 	deleteForOriginalOrderId(originalOrderId) {
-      return this.api._delete(originalOrderId);
+    return this.api._delete(originalOrderId);
   }
 
   /**
@@ -218,7 +218,7 @@ class ProductAndRevenue {
    * @return OperationResult
    */
   deleteForOrderId(id) {
-      return this.api._delete('find', {'where[id]': id});
+    return this.api._delete('find', {'where[id]': id});
   }
 
   /**
@@ -258,7 +258,7 @@ class ProductAndRevenue {
         return new OperationResult(null, "At least one productId is invalid");
       }
     })
-    var keyValuePair = {
+    let keyValuePair = {
       'product_ids': productIds.join(','),
       'where[id]': id
     }

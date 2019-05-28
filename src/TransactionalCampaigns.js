@@ -1,6 +1,6 @@
-var Api = require('./Abstractions/Api');
-var OperationResult = require('./Abstractions/OperationResult');
-var Helpers = require('./Helpers/Helpers');
+const Api = require('./Abstractions/Api');
+const OperationResult = require('./Abstractions/OperationResult');
+const Helpers = require('./Helpers/Helpers');
 
 class TransactionalCampaigns {
   /**
@@ -43,7 +43,7 @@ class TransactionalCampaigns {
    * @return OperationResult
    */
 	create(name, subject, preheader, fromName, fromEmail, replyTo, contentId, emailPreviewLink, address, language, ctags) {
-    var campaign = {
+    let campaign = {
       'name': name,
       'subject': subject,
       'preheader': preheader,
@@ -59,7 +59,7 @@ class TransactionalCampaigns {
       campaign['add_ctags'] = ctags;
     }
 
-    var object = {
+    let object = {
       campaign: campaign
     };
     return this.api._post('', [], object);
@@ -115,10 +115,10 @@ class TransactionalCampaigns {
     tags = null,
     ctags = null
   ) {
-    var emailObj = {
+    let emailObj = {
       campaign_id: campaignId
     };
-    var contentFlag = 0; // nothing provided
+    let contentFlag = 0; // nothing provided
     if (contentId) {
       emailObj['content_id'] = contentId;
       contentFlag = 1 // contentId provided
@@ -145,7 +145,7 @@ class TransactionalCampaigns {
       }
 
       if (recipientCustomFields && recipientCustomFields.length) {
-        for (var key in recipientCustomFields) {
+        for (let key in recipientCustomFields) {
           if (typeof key !== 'string') {
             return new OperationResult(null, 'All keys in your recipientCustomFields array must be strings.');
           }
@@ -190,7 +190,7 @@ class TransactionalCampaigns {
       emailObj['bcc'] = bccEmail;
     }
     if (tags && tags.length) {
-      for (var key in tags) {
+      for (let key in tags) {
         if (typeof key !== 'string') {
           return new OperationResult(null, 'All keys in your tags array must be strings.');
         }
@@ -201,14 +201,14 @@ class TransactionalCampaigns {
       emailObj['tags'] = tags;
     }
     if (ctags && ctags.length) {
-      for (var key in ctags) {
+      for (let key in ctags) {
         if (typeof ctags[key] === 'object') {
           return new OperationResult(null, 'All values in your ctags array must be non-null scalars (string, number).');
         }
       }
       emailObj['add_ctags'] = ctags;
     }
-    var requestObj = { 'email': emailObj };
+    let requestObj = { 'email': emailObj };
     return this.api._post('deliver', null, requestObj, 'emails');
   }
 }

@@ -1,5 +1,5 @@
-var Api = require('./Abstractions/Api');
-var OperationResult = require('./Abstractions/OperationResult');
+const Api = require('./Abstractions/Api');
+const OperationResult = require('./Abstractions/OperationResult');
 
 class Journeys {
 
@@ -58,7 +58,7 @@ class Journeys {
    * @return OperationResult
    */
 	stopAll(contactId, recipientEmail, uid, page) {
-    var params = [];
+    let params = [];
     if (contactId > 0) {
       params['contact_id'] = contactId;
       }
@@ -91,7 +91,7 @@ class Journeys {
    * @return OperationResult
    */
 	pauseJourneyForUid(journeyId, uid) {
-    var params = [];
+    let params = [];
     params['uid'] = uid;
     return this.api._put(journeyId + '/stop/uid', params);
   }
@@ -117,7 +117,7 @@ class Journeys {
    * @return OperationResult
    */
 	resetJourneyForUid(journeyId, uid) {
-    var params = [];
+    let params = [];
     params['uid'] = uid;
     return this.api._put(journeyId + '/reset/uid', params);
   }
@@ -144,7 +144,7 @@ class Journeys {
    * @return OperationResult
    */
 	startJourneyForUid(journeyId, uid) {
-    var params = [];
+    let params = [];
     params['uid'] = uid;
     return this.api._put(journeyId + '/start/uid', params);
 	}

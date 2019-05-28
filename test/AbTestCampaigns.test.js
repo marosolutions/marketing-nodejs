@@ -1,11 +1,12 @@
 require('dotenv').config()
-var AbTestCampaigns = require('../src/AbTestCampaigns');
-var Helpers = require('../src/Helpers/Helpers');
 
-var ACCOUNT_ID = process.env.ACCOUNT_ID;
-var AUTH_TOKEN = process.env.AUTH_TOKEN;
-var TODAY = Helpers.today('YYYY-MM-DD HH:mm:ss');
-var TOMORROW = Helpers.additionalDate(TODAY, 1, 'YYYY-MM-DD HH:mm:ss')
+const AbTestCampaigns = require('../src/AbTestCampaigns');
+const Helpers = require('../src/Helpers/Helpers');
+
+const ACCOUNT_ID = process.env.ACCOUNT_ID;
+const AUTH_TOKEN = process.env.AUTH_TOKEN;
+const TODAY = Helpers.today('YYYY-MM-DD HH:mm:ss');
+const TOMORROW = Helpers.additionalDate(TODAY, 1, 'YYYY-MM-DD HH:mm:ss')
 
 /*
   ERROR
@@ -22,15 +23,15 @@ var TOMORROW = Helpers.additionalDate(TODAY, 1, 'YYYY-MM-DD HH:mm:ss')
 */
 describe('Creates an Ab Test Campaign', function() {
   it('createAbTest()', async () => {
-    var api = new AbTestCampaigns(ACCOUNT_ID, AUTH_TOKEN);
-    var name = 'name_' + Math.round((new Date()).getTime() / 1000);
-    var fromEmail = 'frm_' + Math.round((new Date()).getTime() / 1000) + '@maropost.com';
-    var replyTo = 'to_' + Math.round((new Date()).getTime() / 1000) + '@maropost.com';
-    var address = 'The Alternative Daily | 860 US Highway 1 | Suite 210 | North Palm Beach | FL | 33408';
-    var language = 'en';
-    var sendAt = TOMORROW;
-    var commit = 'Save as Draft';
-    var campaignAttr = [
+    let api = new AbTestCampaigns(ACCOUNT_ID, AUTH_TOKEN);
+    let name = 'name_' + Math.round((new Date()).getTime() / 1000);
+    let fromEmail = 'frm_' + Math.round((new Date()).getTime() / 1000) + '@maropost.com';
+    let replyTo = 'to_' + Math.round((new Date()).getTime() / 1000) + '@maropost.com';
+    let address = 'The Alternative Daily | 860 US Highway 1 | Suite 210 | North Palm Beach | FL | 33408';
+    let language = 'en';
+    let sendAt = TOMORROW;
+    let commit = 'Save as Draft';
+    let campaignAttr = [
       {
         name: 'Group A',
         content_id: '92',
@@ -51,8 +52,8 @@ describe('Creates an Ab Test Campaign', function() {
       }
     ];
 
-    var result = await api.createAbTest(name, fromEmail, replyTo, address, language, campaignAttr, commit, sendAt);
-    expect(response.isSuccess).toBeTruthy();
-    expect(response.errorMessage).toEqual('');
+    let result = await api.createAbTest(name, fromEmail, replyTo, address, language, campaignAttr, commit, sendAt);
+    expect(result.isSuccess).toBeTruthy();
+    expect(result.errorMessage).toEqual('');
   }, 60000);
 });

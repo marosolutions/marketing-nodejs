@@ -1,5 +1,5 @@
-var Api = require('./Abstractions/Api');
-var OperationResult = require('./Abstractions/OperationResult');
+const Api = require('./Abstractions/Api');
+const OperationResult = require('./Abstractions/OperationResult');
 
 class Campaigns {
   
@@ -43,7 +43,7 @@ class Campaigns {
    * @return OperationResult
    */
   getDeliveredReports(id, page) {
-    var overrideUrl = this.resource + '/' + id;
+    let overrideUrl = this.resource + '/' + id;
     return this.api._get('delivered_report', {'page': page}, overrideUrl);
   }
 
@@ -56,11 +56,11 @@ class Campaigns {
    * @return OperationResult
    */
   getOpenReports(id, page, unique = null) {
-    var params = {'page': page};
+    let params = {'page': page};
     if (unique) {
       params['unique'] = unique === true ? 'true' : 'false';
     }
-    var overrideUrl = this.resource + '/' + id;
+    let overrideUrl = this.resource + '/' + id;
     return this.api._get('open_report', params, overrideUrl);
   }
 
@@ -73,11 +73,11 @@ class Campaigns {
    * @return OperationResult
    */
   getClickReports(id, page, unique = null) {
-    var params = {'page': page};
+    let params = {'page': page};
     if (unique) {
       params['unique'] = unique === true ? 'true' : 'false';
     }
-    var overrideUrl = this.resource + '/' + id;
+    let overrideUrl = this.resource + '/' + id;
     return this.api._get('click_report', params, overrideUrl);
   }
 
@@ -90,11 +90,11 @@ class Campaigns {
    * @return OperationResult
    */
   getLinkReports(id, page, unique = null) {
-    var params = {'page': page};
+    let params = {'page': page};
     if (unique) {
       params['unique'] = unique === true ? 'true' : 'false';
     }
-    var overrideUrl = this.resource + '/' + id;
+    let overrideUrl = this.resource + '/' + id;
     return this.api._get('link_report', params, overrideUrl);
   }
 
@@ -106,7 +106,7 @@ class Campaigns {
    * @return OperationResult
    */
   getBounceReports(id, page) {
-    var overrideUrl = this.resource + '/' + id;
+    let overrideUrl = this.resource + '/' + id;
     return this.api._get('bounce_report', {'page': page}, overrideUrl);
   }
 
@@ -118,7 +118,7 @@ class Campaigns {
    * @return OperationResult
    */
   getSoftBounceReports(id, page) {
-    var overrideUrl = this.resource + '/' + id;
+    let overrideUrl = this.resource + '/' + id;
     return this.api._get('soft_bounce_report', {'page': page}, overrideUrl);
   }
 
@@ -130,7 +130,7 @@ class Campaigns {
    * @return OperationResult
    */
   getHardBounceReports(id, page) {
-    var overrideUrl = this.resource + '/' + id;
+    let overrideUrl = this.resource + '/' + id;
     return this.api._get('hard_bounce_report', {'page': page}, overrideUrl);
   }
 
@@ -142,7 +142,7 @@ class Campaigns {
    * @return OperationResult
    */
   getUnsubscribeReports(id, page) {
-    var overrideUrl = this.resource + '/' + id;
+    let overrideUrl = this.resource + '/' + id;
     return this.api._get('unsubscribe_report', {'page': page}, overrideUrl);
   }
 
@@ -154,7 +154,7 @@ class Campaigns {
    * @return OperationResult
    */
   getComplaintReports(id, page) {
-    var overrideUrl = this.resource + '/' + id;
+    let overrideUrl = this.resource + '/' + id;
     return this.api._get('complaint_report', {'page': page}, overrideUrl);
   }
 }
