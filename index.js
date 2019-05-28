@@ -1,5 +1,5 @@
-var Campaigns = require('./src/Campaigns');
-var Contacts = require('./src/Campaigns');
+const Campaigns = require('./src/Campaigns');
+const Contacts = require('./src/Campaigns');
 
 module.exports = 
 {
