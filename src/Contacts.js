@@ -370,7 +370,7 @@ class Contacts {
    */
   unsubscribeAll(contactFieldValue, contactFieldName = 'email') {
     var params = {
-      [key]: contactFieldValue
+      [contactFieldName]: contactFieldValue
     };
     return this.api._put('unsubscribe_all', params);
   }
