@@ -176,7 +176,6 @@ describe('Gets a list of complaints filtered by provided params', function() {
     let unique = true;
     let per = 4;
     let result = await api.getComplaints(1, fields, from, to, unique, null, null, per);
-    // console.log('>> result', result.data[0])
     let accountId = result.data[0].account_id;
     expect(result.isSuccess).toBeTruthy();
     expect(result.errorMessage).toEqual('');

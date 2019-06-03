@@ -93,10 +93,11 @@ class RelationalTableRows {
    * @return OperationResult
    */
   delete(idFieldName, idFieldValue) {
+    let records = {
+      [idFieldName]: idFieldValue
+    }
     let record = {
-      'record': {
-        [idFieldName]: idFieldValue
-      }
+      'record': records
     };
     return this.api._delete('delete', [], null, record);
   }

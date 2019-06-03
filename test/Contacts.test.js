@@ -79,7 +79,7 @@ describe('Gets the specified contact from the specified list', function() {
   }, 60000);
 });
 
-describe('Creates a contact within a list. Updates if previous contact is matched by email.', function() {
+describe('Creates a contact within a list.', function() {
   it('test createOrUpdateForList() => create', async () => {
     let api = new Contacts(ACCOUNT_ID, AUTH_TOKEN);
     let email = testEmail;
@@ -96,7 +96,7 @@ describe('Creates a contact within a list. Updates if previous contact is matche
   }, 60000);
 });
 
-describe('Creates a contact within a list. Updates if previous contact is matched by email.', function() {
+describe('Updates if previous contact is matched by email.', function() {
   it('test createOrUpdateForList() => update', async () => {
     let api = new Contacts(ACCOUNT_ID, AUTH_TOKEN);
     let email = testEmail;

@@ -79,12 +79,12 @@ describe('getOpenReports by id and page', function() {
     let response = await api.getOpenReports(campaignId, 1, true);
     expect(response.isSuccess).toBeTruthy();
     expect(response.errorMessage).toEqual('');
-    expect(response.data.length).toBeGreaterThan(1);
+    expect(response.data.length).toBeGreaterThan(0);
     let id = response.data[0]['campaign_id'];
     let accountId = response.data[0]['account_id'];
     expect(id).toEqual(campaignId);
     expect(ACCOUNT_ID).toEqual(String(accountId));
-  }, 60000);
+  }, 600000);
 });
 
 describe('getClickReports by id and page', function() {
@@ -105,12 +105,12 @@ describe('getClickReports by id and page', function() {
     let response = await api.getClickReports(campaignId, 1, true);
     expect(response.isSuccess).toBeTruthy();
     expect(response.errorMessage).toEqual('');
-    expect(response.data.length).toBeGreaterThan(1);
+    expect(response.data.length).toBeGreaterThan(0);
     let id = response.data[0]['campaign_id'];
     let accountId = response.data[0]['account_id'];
     expect(id).toEqual(campaignId);
     expect(ACCOUNT_ID).toEqual(String(accountId));
-  }, 60000);
+  }, 600000);
 });
 
 describe('getLinkReports by id and page', function() {
@@ -131,10 +131,10 @@ describe('getLinkReports by id and page', function() {
     let response = await api.getLinkReports(campaignId, 1, true);
     expect(response.isSuccess).toBeTruthy();
     expect(response.errorMessage).toEqual('');
-    expect(response.data.length).toBeGreaterThan(1);
+    expect(response.data.length).toBeGreaterThan(0);
     let id = response.data[0]['campaign_id'];
     expect(id).toEqual(campaignId);
-  }, 60000);
+  }, 600000);
 });
 
 describe('getBounceReports by id and page', function() {
@@ -155,12 +155,12 @@ describe('getBounceReports by id and page', function() {
     let response = await api.getBounceReports(campaignId, 1);
     expect(response.isSuccess).toBeTruthy();
     expect(response.errorMessage).toEqual('');
-    expect(response.data.length).toBeGreaterThan(1);
+    expect(response.data.length).toBeGreaterThan(0);
     let id = response.data[0]['campaign_id'];
     let accountId = response.data[0]['account_id'];
     expect(id).toEqual(campaignId);
     expect(ACCOUNT_ID).toEqual(String(accountId));
-  }, 60000);
+  }, 600000);
 });
 
 describe('getSoftBounceReports by id and page', function() {
@@ -186,7 +186,7 @@ describe('getSoftBounceReports by id and page', function() {
     let accountId = response.data[0]['account_id'];
     expect(id).toEqual(campaignId);
     expect(ACCOUNT_ID).toEqual(String(accountId));
-  }, 60000);
+  }, 600000);
 });
 
 // ERROR
