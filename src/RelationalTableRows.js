@@ -21,7 +21,7 @@ class RelationalTableRows {
   
   /**
    * Gets the records of the Relational Table
-   * @return OperationResult
+   * @return {OperationResult}
    */
   get() {
     return this.api._get('');
@@ -31,7 +31,7 @@ class RelationalTableRows {
    * Gets the specified record from the Relational Table
    * @param {string} idFieldName name of the field representing the unique identifier (E.g., "id", "email")
    * @param {mixed} idFieldValue value of the identifier field, for the record to get.
-   * @return OperationResult
+   * @return {OperationResult}
    */
   show(idFieldName, idFieldValue) {
     let record = {
@@ -45,7 +45,7 @@ class RelationalTableRows {
   /**
    * Adds a record to the Relational Table.
    * @param {object} keyValues a list of field name/values for the record to be updated.
-   * @return OperationResult
+   * @return {OperationResult}
    */
   create(keyValues) {
     let records = {};
@@ -60,7 +60,7 @@ class RelationalTableRows {
    * Updates a record in the Relational Table.
    * @param {object} keyValues a list of field name/values for the record to be updated. NOTE: Any DateTime strings
    * must be in one of three formats: "MM/DD/YYYY", "YYYY-MM-DD", or "YYYY-MM-DDThh:mm:ssTZD".
-   * @return OperationResult
+   * @return {OperationResult}
    */
   update(keyValues) {
     let records = {};
@@ -75,7 +75,7 @@ class RelationalTableRows {
    * Creates or updates a record in the Relational Table.
    * @param {object} keyValues a list of field name/values for the record to be updated. NOTE: Any DateTime strings
    * must be in one of three formats: "MM/DD/YYYY", "YYYY-MM-DD", or "YYYY-MM-DDThh:mm:ssTZD".
-   * @return OperationResult
+   * @return {OperationResult}
    */
   upsert(keyValues) {
     let records = {};
@@ -90,7 +90,7 @@ class RelationalTableRows {
    * Deletes the given record of the relational table
    * @param {string} idFieldName name of the field representing the unique identifier (E.g., "id", "email")
    * @param {mixed} idFieldValue value of the identifier field, for the record to get.
-   * @return OperationResult
+   * @return {OperationResult}
    */
   delete(idFieldName, idFieldValue) {
     let records = {

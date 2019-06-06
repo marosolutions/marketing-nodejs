@@ -1,7 +1,7 @@
 require('dotenv').config()
 
-const AbTestCampaigns = require('../src/AbTestCampaigns');
 const Helpers = require('../src/Helpers/Helpers');
+const AbTestCampaigns = require('../src/AbTestCampaigns');
 
 const ACCOUNT_ID = process.env.ACCOUNT_ID;
 const AUTH_TOKEN = process.env.AUTH_TOKEN;

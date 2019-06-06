@@ -1,6 +1,5 @@
 const OperationResult =  require('../Abstractions/OperationResult');
 
-
 class RelationalTableColumn {
   /**
    * Constructor

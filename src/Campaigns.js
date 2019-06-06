@@ -20,7 +20,7 @@ class Campaigns {
   /**
    * Gets the list of campaigns (200 campaigns per page).
    * @param {int} page page #. (>= 1)
-   * @return OperationResult
+   * @return {OperationResult}
    */
   get(page) {
     return this.api._get(null, {'page': page});
@@ -29,7 +29,7 @@ class Campaigns {
   /**
    * Gets the given campaign.
    * @param {int} campaignId
-   * @return OperationResult
+   * @return {OperationResult}
    */
   getCampaign(campaignId) {
     return this.api._get(campaignId, []);
@@ -40,7 +40,7 @@ class Campaigns {
    *
    * @param {int} id The campaign ID
    * @param {int} page page #. (>= 1)
-   * @return OperationResult
+   * @return {OperationResult}
    */
   getDeliveredReports(id, page) {
     let overrideUrl = this.resource + '/' + id;
@@ -53,7 +53,7 @@ class Campaigns {
    * @param {int} id The campaign ID
    * @param {bool|null} unique Gets for unique contacts
    * @param {int} page page #. (>= 1)
-   * @return OperationResult
+   * @return {OperationResult}
    */
   getOpenReports(id, page, unique = null) {
     let params = {'page': page};
@@ -70,7 +70,7 @@ class Campaigns {
    * @param {int} id The campaign ID
    * @param {bool|null} unique Gets for unique contacts
    * @param {int} page page #. (>= 1)
-   * @return OperationResult
+   * @return {OperationResult}
    */
   getClickReports(id, page, unique = null) {
     let params = {'page': page};
@@ -87,7 +87,7 @@ class Campaigns {
    * @param {int} id The campaign ID
    * @param {bool|null} unique Gets for unique contacts
    * @param {int} page page #. (>= 1)
-   * @return OperationResult
+   * @return {OperationResult}
    */
   getLinkReports(id, page, unique = null) {
     let params = {'page': page};
@@ -103,7 +103,7 @@ class Campaigns {
    *
    * @param {int} id The campaign ID
    * @param {int} page page #. (>= 1)
-   * @return OperationResult
+   * @return {OperationResult}
    */
   getBounceReports(id, page) {
     let overrideUrl = this.resource + '/' + id;
@@ -115,7 +115,7 @@ class Campaigns {
    *
    * @param {int} id The campaign ID
    * @param {int} page page #. (>= 1)
-   * @return OperationResult
+   * @return {OperationResult}
    */
   getSoftBounceReports(id, page) {
     let overrideUrl = this.resource + '/' + id;
@@ -127,7 +127,7 @@ class Campaigns {
    *
    * @param {int} id The campaign ID
    * @param {int} page page #. (>= 1)
-   * @return OperationResult
+   * @return {OperationResult}
    */
   getHardBounceReports(id, page) {
     let overrideUrl = this.resource + '/' + id;
@@ -139,7 +139,7 @@ class Campaigns {
    *
    * @param {int} id The campaign ID
    * @param {int} page page #. (>= 1)
-   * @return OperationResult
+   * @return {OperationResult}
    */
   getUnsubscribeReports(id, page) {
     let overrideUrl = this.resource + '/' + id;
@@ -151,7 +151,7 @@ class Campaigns {
    *
    * @param int id The campaign ID
    * @param int page page #. (>= 1)
-   * @return OperationResult
+   * @return {OperationResult}
    */
   getComplaintReports(id, page) {
     let overrideUrl = this.resource + '/' + id;

@@ -39,7 +39,7 @@ class AbTestCampaigns {
    * @param {array} lists
    * @param {array} cTags
    * @param {array} segments
-   * @return OperationResult
+   * @return {OperationResult}
    */
   createAbTest(
     name,

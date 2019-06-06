@@ -2,16 +2,16 @@ require('dotenv').config()
 
 const TransactionalCampaigns = require('../src/TransactionalCampaigns');
 
+const SEND_CAMPAIGN_ID = 1;
+const SEND_CONTENT_ID = 162;
 const ACCOUNT_ID = process.env.ACCOUNT_ID;
 const AUTH_TOKEN = process.env.AUTH_TOKEN;
 const SEND_RECIPIENT = "test@maropost.com";
-const SEND_RECIPIENT_FIRST_NAME = "test_receiverFN";
-const SEND_RECIPIENT_LAST_NAME = "test_receiverLN";
 const SEND_SENDER_NAME = "user-test sender";
 const SEND_SENDER_EMAIL = "info@maropost.com";
 const SEND_SENDER_REPLYTO = "noreply@maropost.com";
-const SEND_CONTENT_ID = 162;
-const SEND_CAMPAIGN_ID = 1;
+const SEND_RECIPIENT_LAST_NAME = "test_receiverLN";
+const SEND_RECIPIENT_FIRST_NAME = "test_receiverFN";
 
 describe('Gets the list of Transaction Campaigns.', function() {
   it('get(page)', async () => {

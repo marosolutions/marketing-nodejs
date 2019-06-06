@@ -4,8 +4,6 @@ const Journeys = require('../src/Journeys');
 
 const ACCOUNT_ID = process.env.ACCOUNT_ID;
 const AUTH_TOKEN = process.env.AUTH_TOKEN;
-const JOURNEY_ID = 0;
-const CONTACT_ID = 0;
 
 describe('Gets the list of journeys', function() {
   it('get(page)', async () => {

@@ -20,7 +20,7 @@ class TransactionalCampaigns {
   /**
    * Gets the list of Transaction Campaigns.
    * @param {int} page page #. (>= 1)
-   * @return OperationResult
+   * @return {OperationResult}
    */
   get(page) {
     return this.api._get(null, {'page': page});
@@ -40,7 +40,7 @@ class TransactionalCampaigns {
    * @param {string} address
    * @param {string} language ISO 639-1 language code
    * @param {string} ctags array of campaign tags
-   * @return OperationResult
+   * @return {OperationResult}
    */
 	create(name, subject, preheader, fromName, fromEmail, replyTo, contentId, emailPreviewLink, address, language, ctags) {
     let campaign = {
@@ -90,7 +90,7 @@ class TransactionalCampaigns {
    * @param {string|null} senderAddress physical address of sender. Overrides the transactional campaign default sender address.
    * @param {array|null} tags associative array where the item key is the name of the tag within the content, and the item value is the tag's replacement upon sending. All keys must be strings. All values must be non-null scalars.
    * @param {array|null} ctags campaign tags. Must be a simple array of scalar values.
-   * @return OperationResult data property contains information about the newly created campaign.
+   * @return {OperationResult} data property contains information about the newly created campaign.
    */
 	sendEmail(
     campaignId,

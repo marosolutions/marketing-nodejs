@@ -20,7 +20,7 @@ class Reports {
   /**
    * Gets the list of reports
    * @param {int} page page #. (>= 1)
-   * @return OperationResult
+   * @return {OperationResult}
    */
   get(page) {
     return this.api._get(null, {'page': page});
@@ -29,7 +29,7 @@ class Reports {
   /**
    * Gets report by id
    * @param {int} id report ID
-   * @return OperationResult
+   * @return {OperationResult}
    */
   getReport(id) {
     return this.api._get(id);
@@ -46,7 +46,7 @@ class Reports {
    * @param {string|null} uid filters by uid
    * @param {int|null} per determines how many records per request to receive
    * @param {int} page page #. (>= 1)
-   * @return OperationResult
+   * @return {OperationResult}
    */
   getOpens(
       page,
@@ -83,7 +83,7 @@ class Reports {
    * @param {string|null} uid filters by uid
    * @param {int|null} per determines how many records per request to receive
    * @param {int} page page #. (>= 1)
-   * @return OperationResult
+   * @return {OperationResult}
    */
   getClicks(
     page,
@@ -121,7 +121,7 @@ class Reports {
    * @param {string|null} type filters by specific type
    * @param {int|null} per determines how many records per request to receive
    * @param {int} page page #. (>= 1)
-   * @return OperationResult
+   * @return {OperationResult}
    */
   getBounces(
     page,
@@ -160,7 +160,7 @@ class Reports {
    * @param {string|null} uid filters by uid
    * @param {int|null} per determines how many records per request to receive
    * @param {int} page page #. (>= 1)
-   * @return OperationResult
+   * @return {OperationResult}
    */
   getUnsubscribes(
     page,
@@ -197,7 +197,7 @@ class Reports {
    * @param {string|null} uid filters by uid
    * @param {int|null} per determines how many records per request to receive
    * @param {int} page page #. (>= 1)
-   * @return OperationResult
+   * @return {OperationResult}
    */
   getComplaints(
     page,
@@ -231,7 +231,7 @@ class Reports {
    * @param {Date|null} to End of date range filter
    * @param {int|null} per gets the mentioned number of reports
    * @param {int} page page #. (>= 1)
-   * @return OperationResult
+   * @return {OperationResult}
    */
   getAbReports(
     name,
@@ -257,7 +257,7 @@ class Reports {
    * Gets the list of all Journeys
    *
    * @param {int} page page #. (>= 1)
-   * @return OperationResult
+   * @return {OperationResult}
    */
   getJourneys(page) {
     return this.api._get('journeys', {'page': page});

@@ -3,14 +3,6 @@ class OperationResult {
   /**
    * Constructor
    * 
-   * apiResponse = {
-   *   body: {
-   *      error: '',
-   *      message: ''
-   *   }
-   *   status: 200
-   * }
-   * 
    * @param {object|null} apiResponse
    * @param {string|null} errorMessage
    */

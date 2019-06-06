@@ -20,7 +20,7 @@ class Journeys {
   /**
    * Gets the list of journeys
    * @param {int} page page #. (>= 1)
-   * @return OperationResult
+   * @return {OperationResult}
    */
   get(page) {
     return this.api._get(null, {'page': page});
@@ -31,7 +31,7 @@ class Journeys {
    *
    * @param {int} journeyId
    * @param {int} page page #. (>= 1)
-   * @return OperationResult
+   * @return {OperationResult}
    */
 	getCampaigns(journeyId, page) {
     return this.api._get(journeyId + '/journey_campaigns', {'page': page});
@@ -42,7 +42,7 @@ class Journeys {
    *
    * @param {int} journeyId
    * @param {int} page page #. (>= 1)
-   * @return OperationResult
+   * @return {OperationResult}
    */
 	getContacts(journeyId, page) {
     return this.api._get(journeyId + '/journey_contacts', {'page': page});
@@ -55,7 +55,7 @@ class Journeys {
    * @param {string} recipientEmail this filter ignored if null.
    * @param {string} uid this filter ignored if null.
    * @param {int} page page #. (>= 1)
-   * @return OperationResult
+   * @return {OperationResult}
    */
 	stopAll(contactId, recipientEmail, uid, page) {
     let params = [];
@@ -77,7 +77,7 @@ class Journeys {
    *
    * @param {int} journeyId
    * @param {int} contactId
-   * @return OperationResult
+   * @return {OperationResult}
    */
 	pauseJourneyForContact(journeyId, contactId) {
     return this.api._put(journeyId + '/stop/' + contactId, []);
@@ -88,7 +88,7 @@ class Journeys {
    *
    * @param {int} journeyId
    * @param {string} uid
-   * @return OperationResult
+   * @return {OperationResult}
    */
 	pauseJourneyForUid(journeyId, uid) {
     let params = [];
@@ -102,7 +102,7 @@ class Journeys {
    *
    * @param {int} journeyId
    * @param {int} contactId
-   * @return OperationResult
+   * @return {OperationResult}
    */
 	resetJourneyForContact(journeyId, contactId) {
     return this.api._put(journeyId + '/reset/' + contactId, []);
@@ -114,7 +114,7 @@ class Journeys {
    *
    * @param {int} journeyId
    * @param {string} uid
-   * @return OperationResult
+   * @return {OperationResult}
    */
 	resetJourneyForUid(journeyId, uid) {
     let params = [];
@@ -128,7 +128,7 @@ class Journeys {
    *
    * @param {int} journeyId
    * @param {int} contactId
-   * @return OperationResult
+   * @return {OperationResult}
    */
 	startJourneyForContact(journeyId, contactId) {
     return this.api._put(journeyId + '/start/' + contactId, []);
@@ -141,7 +141,7 @@ class Journeys {
    *
    * @param {int} journeyId
    * @param {string} uid
-   * @return OperationResult
+   * @return {OperationResult}
    */
 	startJourneyForUid(journeyId, uid) {
     let params = [];

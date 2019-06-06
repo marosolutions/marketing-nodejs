@@ -1,7 +1,7 @@
 const Api = require('./Abstractions/Api');
-const OperationResult = require('./Abstractions/OperationResult');
-const OrderItemInput = require('./ResultTypes/OrderItemInput');
 const Helpers = require('./Helpers/Helpers');
+const OrderItemInput = require('./ResultTypes/OrderItemInput');
+const OperationResult = require('./Abstractions/OperationResult');
 
 class ProductAndRevenue {
   
@@ -22,7 +22,7 @@ class ProductAndRevenue {
   /**
    * Gets a the specified order.
    * @param {int} id
-   * @return OperationResult
+   * @return {OperationResult}
    */
   getOrder(id) {
     return this.api._get('find', {'where[id]': id});
@@ -31,7 +31,7 @@ class ProductAndRevenue {
   /**
    * Gets a the specified order.
    * @param {string} originalOrderId matches the original_order_id field of the order.
-   * @return OperationResult
+   * @return {OperationResult}
    */
   getOrderForOriginalOrderId(originalOrderId) {
     return this.api._get(originalOrderId, []);
@@ -56,7 +56,7 @@ class ProductAndRevenue {
    * @param {string|null} grandTotal
    * @param {int|null} capaignId
    * @param {string|null} couponCode
-   * @return OperationResult
+   * @return {OperationResult}
    */
   createOrder(requireUnique,
               contactEmail,
@@ -147,7 +147,7 @@ class ProductAndRevenue {
      * @param {array} orderItems restates the orderItems as as array of OrderItemInput objects.
      * @param {int|null} campaignId
      * @param {string|null} couponCode
-     * @return OperationResult
+     * @return {OperationResult}
      */
   updateOrderForOriginalOrderId(originalOrderId, orderDateTime, orderStatus, orderItems, campaignId = null, couponCode = null) {
     if (!orderItems) {
@@ -179,7 +179,7 @@ class ProductAndRevenue {
    * @param {array} orderItems restates the orderItems as as array of OrderItemInput objects.
    * @param {int|null} campaignId
    * @param {string|null} couponCode
-   * @return OperationResult
+   * @return {OperationResult}
    */
   updateOrderForOrderId(orderId, orderDateTime, orderStatus, orderItems, campaignId = null, couponCode = null) {
     if (!orderItems) {
@@ -205,7 +205,7 @@ class ProductAndRevenue {
    * Deletes the complete eCommerce order if the order is cancelled or returned using unique original order id.
    *
    * @param {string} originalOrderId matches the original_order_id field of the order
-   * @return OperationResult
+   * @return {OperationResult}
    */
 	deleteForOriginalOrderId(originalOrderId) {
     return this.api._delete(originalOrderId);
@@ -215,7 +215,7 @@ class ProductAndRevenue {
    * Deletes the complete eCommerce order if the order is cancelled or returned using Maropost order id.
    *
    * @param {int} id
-   * @return OperationResult
+   * @return {OperationResult}
    */
   deleteForOrderId(id) {
     return this.api._delete('find', {'where[id]': id});
@@ -227,7 +227,7 @@ class ProductAndRevenue {
    *
    * @param {string} originalOrderId matches the original_order_id field of the order
    * @param {array} productIds the product(s) to delete from the order
-   * @return OperationResult
+   * @return {OperationResult}
    */
   deleteProductsForOriginalOrderId(originalOrderId, productIds) {
     if (productIds == null || productIds.length == 0) {
@@ -247,7 +247,7 @@ class ProductAndRevenue {
    *
    * @param {int} id
    * @param {array} productIds the product(s) to delete from the order
-   * @return OperationResult
+   * @return {OperationResult}
    */
   deleteProductsForOrderId(id, productIds) {
     if (productIds == null || productIds.length == 0) {

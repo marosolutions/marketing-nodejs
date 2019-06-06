@@ -21,7 +21,7 @@ class Contacts {
    * Searches a contact with email and get all the details of the contact
    *
    * @param {string} email Email for which to get the contact
-   * @return OperationResult
+   * @return {OperationResult}
    */
   getForEmail(email) {
     let emailInUriFormat = {
@@ -35,7 +35,7 @@ class Contacts {
    *
    * @param {int} contactId Id of the Contact
    * @param {int} page page #. (>= 1)
-   * @return OperationResult
+   * @return {OperationResult}
    */
   getOpens(contactId, page) {
     let resource = contactId +  '/open_report';
@@ -47,7 +47,7 @@ class Contacts {
    *
    * @param {int} contactId
    * @param {int} page page #. (>= 1)
-   * @return OperationResult
+   * @return {OperationResult}
    */
   getClicks(contactId, page) {
     let resource = contactId +  '/click_report';
@@ -59,7 +59,7 @@ class Contacts {
    *
    * @param {int} listId
    * @param {int} page page #. (>= 1)
-   * @return OperationResult
+   * @return {OperationResult}
    */
   getForList(listId, page) {
     let overrideResource = 'lists/' + listId;
@@ -71,7 +71,7 @@ class Contacts {
    *
    * @param int listId
    * @param int contactId
-   * @return OperationResult
+   * @return {OperationResult}
    */
   getContactForList(listId, contactId) {
     let overrideResource = 'lists/' + listId;
@@ -93,7 +93,7 @@ class Contacts {
    * @param {array} removeTags Tags to remove from the contact. Simple array of tag names
    * @param {bool} removeFromDNM Set this true to subscribe contact to the list, and remove it from DNM)
    * @param {bool} subscribe Set this true to subscribe contact to the list; false otherwise
-   * @return OperationResult
+   * @return {OperationResult}
    */
   async createOrUpdateForList(
     listId,
@@ -152,7 +152,7 @@ class Contacts {
    * @param {array} removeTags tags to remove from the contact. Simple array of tag names
    * @param {bool} removeFromDNM set this true to subscribe contact to the list, and remove it from DNM)
    * @param {bool} subscribe set this true to subscribe contact to the list; false otherwise
-   * @return OperationResult
+   * @return {OperationResult}
    */
   updateForListAndContact(
     listId,
@@ -202,7 +202,7 @@ class Contacts {
    * @param {array} addTags Tags to add to the contact. Non associated array of tagnames
    * @param {array} removeTags Tags to remove from the contact. Non associative array of tagnames
    * @param {bool} removeFromDNM Set this true to subscribe contact to the list, and remove it from DNM)
-   * @return OperationResult
+   * @return {OperationResult}
    */
   async createOrUpdateContact(
     email,
@@ -257,7 +257,7 @@ class Contacts {
    * @param {array} unsubscribeListIds Array of IDs of Lists to unsubscribe the contact from
    * @param {array} unsubscribeWorkflowIds Array of list of IDs of workflows to unsubscribe the contact from
    * @param {string|null} unsubscribeCampaign CampaignID to unsubscribe the contact from
-   * @return OperationResult
+   * @return {OperationResult}
    */
   async createOrUpdateForListsAndWorkflows(
     email,
@@ -312,7 +312,7 @@ class Contacts {
    * Delete contacts from all list having the email as passed
    *
    * @param {string} email
-   * @return OperationResult
+   * @return {OperationResult}
    */
   deleteFromAllLists(email) {
     let emailAsArray = {
@@ -326,7 +326,7 @@ class Contacts {
    *
    * @param {int} contactId
    * @param {array} listIds
-   * @return OperationResult
+   * @return {OperationResult}
    */
   deleteFromLists(contactId, listIds = []) {
     let params = [];
@@ -340,7 +340,7 @@ class Contacts {
    * Delete contacts having the specified UID
    *
    * @param {string} uid
-   * @return OperationResult
+   * @return {OperationResult}
    */
   deleteContactForUid(uid) {
     let params = {'uid': uid};
@@ -352,7 +352,7 @@ class Contacts {
    *
    * @param {int} listId
    * @param {int} contactId
-   * @return OperationResult
+   * @return {OperationResult}
    */
   deleteListContact(listId, contactId) {
     let overrideResource = 'lists/' + listId;
@@ -366,7 +366,7 @@ class Contacts {
    * @param {string} contactFieldValue The value of the field to search the contact based on
    * @param {string} contactFieldName The name of the field for which the value is being passed.
    *        For now, the possible values are: email or uid
-   * @return OperationResult
+   * @return {OperationResult}
    */
   unsubscribeAll(contactFieldValue, contactFieldName = 'email') {
     let params = {
