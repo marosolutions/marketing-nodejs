@@ -1,5 +1,11 @@
-const Campaigns = require('./src/Campaigns');
+const Reports = require('./src/Reports');
+const Journeys = require('./src/Journeys');
 const Contacts = require('./src/Campaigns');
+const Campaigns = require('./src/Campaigns');
+const AbTestCampaigns = require('./src/AbTestCampaigns');
+const ProductAndRevenue = require('./src/ProductAndRevenue');
+const RelationalTableRows = require('./src/RelationalTableRows');
+const TransactionalCampaigns = require('./src/TransactionalCampaigns');
 
 module.exports = 
 {
@@ -10,6 +16,7 @@ module.exports =
       Contacts,
       Journeys,
       ProductAndRevenue,
+      RelationalTableRows,
       Reports,
       TransactionalCampaigns
     }

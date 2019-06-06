@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "description": "This package provides programmatic access to several Maropost services.",
   "main": "index.js",
+  "private": true,
   "scripts": {
     "test": "jest"
   },
@@ -10,17 +11,7 @@
     "type": "git",
     "url": "git+https://github.com/marosolutions/marketing-nodejs.git"
   },
-  "keywords": [
-    "boilerplate",
-    "npm",
-    "module",
-    "node",
-    "javascript"
-  ],
   "author": "Maropost",
-  "contributors": [
-    "Manish Baral <mail.aarman@gmail.com>"
-  ],
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/marosolutions/marketing-nodejs/issues"
