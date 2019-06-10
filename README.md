@@ -11,7 +11,7 @@ success/failure, any Exceptions throw, and the resulting data.
 # Installation
 
 ## npm
-[npm](https://www.npmjs.com/) is the standard node.js packaging system. Simply search for "maropost.api".
+[npm](https://www.npmjs.com/) is the standard node.js packaging system. The project is at [https://www.npmjs.com/package/maropost.api](https://www.npmjs.com/package/maropost.api).
 
 # Usage
 To use a service, first instantiate it, providing your Maropost AccountId
