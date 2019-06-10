@@ -1,6 +1,6 @@
 {
-  "name": "@maropost/maropost.api",
-  "version": "0.1.0",
+  "name": "maropost.api",
+  "version": "0.1.1",
   "description": "This package provides programmatic access to several Maropost services.",
   "main": "index.js",
   "scripts": {
