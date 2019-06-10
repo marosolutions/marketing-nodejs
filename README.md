@@ -18,7 +18,7 @@ To use a service, first instantiate it, providing your Maropost AccountId
 and Auth Token. For example, to get your list of reports using the Reports
 service, execute:
 ```javascript
-var { Maropost } = require(maropost.api)
+var { Maropost } = require('maropost.api')
 var reports = new Maropost.Api.Reports(myAccountId, myAuthToken);
 var result = await reports.get();
 if (result.isSuccess) {
