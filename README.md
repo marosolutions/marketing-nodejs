@@ -1,7 +1,5 @@
 # Summary
 
-## Package still under active development. Functionality and documentation likely to change without notice. ##
-
 This package provides programmatic access to several Maropost services. It 
 consists of eight services within the `Maropost.Api` namespace. Each service 
 consists of one or more functions that perform an operation against your 
@@ -12,12 +10,8 @@ success/failure, any Exceptions throw, and the resulting data.
 
 # Installation
 
-## npm (Coming soon. Not yet available.)
+## npm
 [npm](https://www.npmjs.com/) is the standard node.js packaging system. Simply search for "maropost.api".
-
-## Install from Source
-TODO
-
 
 # Usage
 To use a service, first instantiate it, providing your Maropost AccountId
