@@ -32,8 +32,8 @@ class AbTestCampaigns {
    * @param {array} suppressedListIds
    * @param {array} suppressedSegmentIds
    * @param {array} suppressedJourneyIds
-   * @param {int|null} emailPreviewLink
-   * @param {string|null} decidedBy Allowed values for decided_by: ('TopChoice' for Top Choices) or
+   * @param {int|null} emailPreviewLink Allowed values: 1 to send email; 0 to not send.
+   * @param {string|null} decidedBy Allowed values for decidedBy: ('TopChoice' for Top Choices) or
    * ('Opens' for Highest Open Rate) or ('Clicks' for Highest Click Rate) or ('Manual' for Manual Selection) or
    * ('click_to_open' for Highest Click-to-Open Rate) or ('conversions' for Highest Conversion Rate)
    * @param {array} lists

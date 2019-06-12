@@ -36,7 +36,7 @@ class TransactionalCampaigns {
    * @param {string} fromEmail sender email address
    * @param {string} replyTo reply-to email address
    * @param {int} contentId
-   * @param {bool} emailPreviewLink
+   * @param {bool} emailPreviewLink true to send email; false to not send.
    * @param {string} address
    * @param {string} language ISO 639-1 language code
    * @param {string} ctags array of campaign tags

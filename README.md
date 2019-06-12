@@ -11,7 +11,9 @@ success/failure, any Exceptions throw, and the resulting data.
 # Installation
 
 ## npm
-[npm](https://www.npmjs.com/) is the standard node.js packaging system. The project is at [https://www.npmjs.com/package/maropost.api](https://www.npmjs.com/package/maropost.api).
+[npm](https://www.npmjs.com/) is the standard node.js packaging system. You can find this package at [https://www.npmjs.com/package/maropost.api](https://www.npmjs.com/package/maropost.api). You can install it by running
+
+    npm i maropost.api
 
 # Usage
 To use a service, first instantiate it, providing your Maropost AccountId
@@ -107,21 +109,31 @@ new Maropost.Api.AbTestCampaigns(myAccountId, myAuthToken)
 ```
 
 ### Available Methods:
- - `createAbTest(name, fromEmail, replyTo, address, language, campaignGroupsAttributes, sendAt)`
+ - `createAbTest(name, fromEmail, replyTo, address, language, campaignGroupsAttributes, commit, sendAt, brandId, suppressedListIds, suppressedSegmentIds, suppressedJourneyIds, emailPreviewLink, decidedBy, lists, cTags, segments)`
    - `name`: name of the new campaign
    - `fromEmail`: default sender email address for campaign emails
    - `replyTo`: default reply-to email address for campaign emails
    - `address`: default physical address included on campaign emails
    - `language`: ISO 639-1 language code (e.g, `"en"`). 2 characters.
-   - `campaignGroupsAttributes`: array of attributes. Each attribute is
-   itself an object with the following properties (all strings):
+   - `campaignGroupsAttributes`: array of attributes. Each attribute is itself an object with the following properties (all strings):
      - `name`: name of the group
      - `content_id`: content ID
      - `subject`: subject line of emails
      - `from_name`: "from name" on emails
-     - `percentage`: percentage of emails that should be sent with these
-     settings.
+     - `percentage`: percentage of emails that should be sent with these settings
+     - `preheader`:
+     - `send_at`: DateTime string having the format `YYYY-MM-DD HH:mm:ss`
+   - `commit`: acceptable values are: `"Save as Draft"` or `"Send Test"` or `"Schedule"`
    - `sendAt`: DateTime string having the format `YYYY-MM-DD HH:mm:ss`
+   - `brandId`:
+   - `suppressedListIds`: array of list IDs in string format
+   - `suppressedSegmentIds`: array of segment IDs in string format
+   - `suppressedJourneyIds`: array of journey IDs in string format
+   - `emailPreviewLink`: 1 for true, or 0 for false
+   - `decidedBy`
+   - `lists`: array of targeted list IDs, formatted as strings (E.g., ["12","13"])
+   - `cTags`
+   - `segments`: array of targeted segment IDs, formatted as strings (E.g., ["12","13"])
 
 ---
 
@@ -138,17 +150,17 @@ new Maropost.Api.TransactionalCampaigns(myAccountId, myAuthToken)
    - `page`: page # (>= 1). Up to 200 records returned per page.
  - `create(name, subject, preheader, fromName, fromEmail, replyTo, contentId, emailPreviewLink, address, language, ctags)`
      * Creates a Transactional Campaign
-     * `name` campaign name
-     * `subject` campaign subject
-     * `preheader` campaign preheader
-     * `fromName` sender name in the email
-     * `fromEmail` sender email address
-     * `replyTo` reply-to email address
-     * `contentId`
-     * `emailPreviewLink`
-     * `address` physical address
-     * `language` ISO 639-1 language code
-     * `ctags` array of campaign tags
+     * `name`: campaign name
+     * `subject`: campaign subject
+     * `preheader`: campaign preheader
+     * `fromName`: sender name in the email
+     * `fromEmail`: sender email address
+     * `replyTo`: reply-to email address
+     * `contentId`:
+     * `emailPreviewLink`: true to send email; false to not send.
+     * `address`: physical address
+     * `language`: ISO 639-1 language code (e.g., "en"). 2 characters.
+     * `ctags`: array of campaign tags
 
  - `sendEmail(campaignId,
       contentId = null,
@@ -175,7 +187,7 @@ new Maropost.Api.TransactionalCampaigns(myAccountId, myAuthToken)
      * Sends a transactional campaign email to a recipient. Sender's 
      information will be automatically fetched from the transactional 
      campaign, unless provided in the function arguments.
-     * `campaignId`: must be a campaign that already exists when you call `svc.get()`. If you don't have one, first call `svc.create()`.
+     * `campaignId`: must be a campaign that already exists when you call `get(...)`. If you don't have one, first call `create(...)`.
      * `contentId`: If provided, the transactional campaign's content will be replaced by this content.
      * `contentName`: If contentId is null, the transactional campaign's content name will be replaced by this name.
      * `contentHtmlPart`: If contentId is null, the transactional campaign's content HTML part will be replaced by this HTML part.
@@ -643,6 +655,7 @@ new Maropost.Api.Reports(myAccountId, myAuthToken)
    * `unique`: if true, gets unique records
    * `email`: gets Bounces for specific email
    * `uid`: gets Bounces for provided uid
+   * `type`: acceptable values are "hard" or "soft"
    * `per`: gets the specified number of records
 
  - `getUnsubscribes(
