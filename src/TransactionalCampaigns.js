@@ -138,10 +138,10 @@ class TransactionalCampaigns {
       if (!Helpers.validateEmail(recipientEmail)) {
         return new OperationResult(null, 'You must provide a well-formed recipientEmail because contactId is null.');
       }
-      emailObj['content'] = {
-        'name': recipientEmail,
-        'html_part': recipientFirstName,
-        'text_part': recipientLastName
+      emailObj['contact'] = {
+        'email': recipientEmail,
+        'first_name': recipientFirstName,
+        'last_name': recipientLastName
       }
 
       if (recipientCustomFields && recipientCustomFields.length) {
