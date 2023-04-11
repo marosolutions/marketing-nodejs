@@ -1,8 +1,6 @@
 const moment = require('moment');
 
 const Helpers = {
-  API_URL: 'https://api.maropost.com/accounts/',
-
   humanize: function(str) {
     return str
           .replace(/^[\s_]+|[\s_]+$/g, '')
